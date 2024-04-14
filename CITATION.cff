@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: If you use this software in your work, please cite it using the following metadata
-title: Emdees
+title: Airou
 authors:
 - family-names: Sardone
   given-names: Francesco
@@ -8,6 +8,6 @@ keywords:
 - credit
 - citation
 version: 1.1.0
-date-released: 2023-07-30
+date-released: 2024-04-15
 license: GPL-3.0
-repository-code: https://github.com/airscripts/emdees
+repository-code: https://github.com/airscripts/airou
