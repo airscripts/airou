@@ -1,4 +1,6 @@
 .env
 env.sh
+setup.sh
+teardown.sh
 distribution
 node_modules

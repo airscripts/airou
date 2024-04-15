@@ -1,13 +1,14 @@
 {
   "name": "airou",
+  "type": "module",
   "version": "0.1.0",
+  "main": "./distribution/main.js",
   "description": "A personal assistant for everyday things.",
-  "main": "index.js",
   "scripts": {
     "application:clean": "rm -rf ./distribution",
-    "application:run": "node --watch ./distribution/main.js",
+    "application:run": "node --no-warnings --watch ./distribution/main.js",
     "application:compile": "npm run application:clean && tsc",
-    "application:compile.watch": "npm run application:clean tsc -w"
+    "application:compile.watch": "npm run application:clean && tsc -w"
   },
   "repository": {
     "type": "git",
