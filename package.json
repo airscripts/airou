@@ -8,7 +8,8 @@
     "application:clean": "rm -rf ./distribution",
     "application:run": "node --no-warnings --watch ./distribution/main.js",
     "application:compile": "npm run application:clean && tsc",
-    "application:compile.watch": "npm run application:clean && tsc -w"
+    "application:compile.watch": "npm run application:clean && tsc -w",
+    "application:apply.migrations": "prisma migrate dev --schema ./sources/database/schema.prisma"
   },
   "repository": {
     "type": "git",
