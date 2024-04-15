@@ -1,0 +1,4 @@
+.env
+env.sh
+distribution
+node_modules

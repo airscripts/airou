@@ -1,0 +1,33 @@
+{
+  "name": "airou",
+  "version": "0.1.0",
+  "description": "A personal assistant for everyday things.",
+  "main": "index.js",
+  "scripts": {
+    "application:clean": "rm -rf ./distribution",
+    "application:run": "node --watch ./distribution/main.js",
+    "application:compile": "npm run application:clean && tsc",
+    "application:compile.watch": "npm run application:clean tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airscripts/airou.git"
+  },
+  "author": "airscripts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airscripts/airou/issues"
+  },
+  "homepage": "https://github.com/airscripts/airou#readme",
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "fastify": "^4.26.2",
+    "node-fetch": "^3.3.2",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "prisma": "^5.12.1",
+    "typescript": "^5.4.5"
+  }
+}
