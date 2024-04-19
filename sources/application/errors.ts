@@ -15,6 +15,21 @@ class DatabaseError extends Error {
   }
 }
 
+class ServiceError extends Error {
+  constructor(public code: string) {
+    super(messages.service[code].message);
+    Object.setPrototypeOf(this, new.target.prototype);
+    Error.captureStackTrace(this, this.constructor);
+  }
+  
+  toJSON() {
+    return {
+      code: this.code,
+      message: this.message,
+    };
+  }
+}
+
 class NetworkError extends Error {
   constructor(public code: string) {
     super(messages.network[code].message);
@@ -83,6 +98,7 @@ export function assertIsError(error: unknown): asserts error is Error {
 
 export default {
   BotError: BotError,
+  ServiceError: ServiceError,
   NetworkError: NetworkError,
   DatabaseError: DatabaseError,
   ValidationError: ValidationError,

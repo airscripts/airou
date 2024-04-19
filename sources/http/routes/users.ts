@@ -20,7 +20,7 @@ class Users {
         let data = null;
 
         try {
-          data = await core.user[method](param);
+          data = await core.users.service[method](param);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
@@ -43,7 +43,7 @@ class Users {
         let data = null;
 
         try {
-          data = await core.user.create({
+          data = await core.users.service.create({
             name: request.body.name,
             email: request.body.email,
           });
@@ -71,7 +71,7 @@ class User {
         let data = null;
 
         try {
-          data = await core.user.retrieveById(request.params.id);
+          data = await core.users.service.retrieveById(request.params.id);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
@@ -87,14 +87,14 @@ class User {
     http.patch(
       CONSTANTS.http.routes.user,
       async (
-        request: FastifyRequest<{ Body: HttpPatch, Params: { id: string } }>,
+        request: FastifyRequest<{ Body: HttpPatch; Params: { id: string } }>,
         reply: FastifyReply,
       ) => {
         console.info('Executing route PATCH /users.');
         let data = null;
 
         try {
-          data = await core.user.update({
+          data = await core.users.service.update({
             id: request.params.id,
             name: request.body.name,
           });
@@ -113,14 +113,14 @@ class User {
     http.delete(
       CONSTANTS.http.routes.user,
       async (
-        request: FastifyRequest<{ Body: HttpDelete, Params: { id: string } }>,
+        request: FastifyRequest<{ Body: HttpDelete; Params: { id: string } }>,
         reply: FastifyReply,
       ) => {
         console.info('Executing route DELETE /users.');
         let data = null;
 
         try {
-          data = await core.user.remove(request.params.id);
+          data = await core.users.service.remove(request.params.id);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });

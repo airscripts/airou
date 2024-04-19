@@ -11,10 +11,24 @@ interface User {
 }
 
 interface HttpDelete extends Pick<User, 'id'> {}
-interface HttpPost extends Pick<User, 'name' | 'email'> {}
-interface DatabaseCreate extends Pick<User, 'name' | 'email'> {}
 
-interface DatabaseUpdate extends Pick<User, 'id'> {
+interface HttpPost extends Pick<User, 'name'> {
+  email?: User['email'];
+}
+
+interface ServiceCreate extends Pick<User, 'name'> {
+  email?: User['email'];
+}
+
+interface RepositoryCreate extends Pick<User, 'name'> {
+  email?: User['email'];
+}
+
+interface ServiceUpdate extends Pick<User, 'id'> {
+  name?: User['name'];
+}
+
+interface RepositoryUpdate extends Pick<User, 'id'> {
   name?: User['name'];
 }
 
@@ -27,6 +41,8 @@ export {
   HttpPost,
   HttpPatch,
   HttpDelete,
-  DatabaseCreate,
-  DatabaseUpdate,
+  ServiceCreate,
+  ServiceUpdate,
+  RepositoryCreate,
+  RepositoryUpdate,
 }

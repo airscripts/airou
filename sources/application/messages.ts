@@ -39,6 +39,18 @@ const database: Message = {
   },
 };
 
+const service: Message = {
+  SERVICE_ERROR: {
+    code: CONSTANTS.application.errors.service.codes.serviceError,
+    message: translations.en.errors.service.messages.serviceError,
+  },
+
+  MISSING_USER_NAME: {
+    code: CONSTANTS.application.errors.service.codes.missingUserName,
+    message: translations.en.errors.service.messages.missingUserName,
+  },
+};
+
 const bot: Message = {};
 const network: Message = {};
 const validation: Message = {};
@@ -46,6 +58,7 @@ const application: Message = {};
 
 export default {
   bot: bot,
+  service: service,
   network: network,
   database: database,
   validation: validation,

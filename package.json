@@ -6,9 +6,10 @@
   "description": "A personal assistant for everyday things.",
   "scripts": {
     "application:clean": "rm -rf ./distribution",
-    "application:run": "node --no-warnings --watch ./distribution/main.js",
     "application:compile": "npm run application:clean && tsc",
+    "tests:all": "node --import tsx --test tests/**/*.test.ts",
     "application:compile.watch": "npm run application:clean && tsc -w",
+    "application:run": "node --no-warnings --watch ./distribution/main.js",
     "application:apply.migrations": "prisma migrate dev --schema ./sources/database/schema.prisma"
   },
   "repository": {

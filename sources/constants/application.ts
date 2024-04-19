@@ -16,6 +16,13 @@ export default {
       }
     },
 
+    service: {
+      codes: {
+        serviceError: 'S0000',
+        missingUserName: 'S0001',
+      }
+    },
+
     bot: {},
     network: {},
     validation: {},

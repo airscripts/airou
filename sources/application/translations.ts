@@ -11,6 +11,13 @@ const en = {
         userIsNotDisabled: 'User is not disabled.',
       },
     },
+
+    service: {
+      messages: {
+        serviceError: 'Service error.',
+        missingUserName: 'Missing user name.',
+      },
+    },
   },
 };
 
