@@ -2,40 +2,40 @@ import CONSTANTS from '../constants/index.js';
 import translations from '../translations/index.js';
 import { Message } from '../domain/model/application.js';
 
-const database: Message = {
+const repository: Message = {
   DATABASE_ERROR: {
-    code: CONSTANTS.application.errors.database.codes.databaseError,
-    message: translations.en.errors.database.messages.databaseError,
+    code: CONSTANTS.application.errors.repository.codes.databaseError,
+    message: translations.en.errors.repository.messages.databaseError,
   },
 
   USER_NOT_FOUND: {
-    code: CONSTANTS.application.errors.database.codes.userNotFound,
-    message: translations.en.errors.database.messages.userNotFound,
+    code: CONSTANTS.application.errors.repository.codes.userNotFound,
+    message: translations.en.errors.repository.messages.userNotFound,
   },
 
   USER_ALREADY_EXISTS: {
-    code: CONSTANTS.application.errors.database.codes.userAlreadyExists,
-    message: translations.en.errors.database.messages.userAlreadyExists,
+    code: CONSTANTS.application.errors.repository.codes.userAlreadyExists,
+    message: translations.en.errors.repository.messages.userAlreadyExists,
   },
 
   USER_IS_DISABLED: {
-    code: CONSTANTS.application.errors.database.codes.userIsDisabled,
-    message: translations.en.errors.database.messages.userIsDisabled,
+    code: CONSTANTS.application.errors.repository.codes.userIsDisabled,
+    message: translations.en.errors.repository.messages.userIsDisabled,
   },
 
   USER_IS_DELETED: {
-    code: CONSTANTS.application.errors.database.codes.userIsDeleted,
-    message: translations.en.errors.database.messages.userIsDeleted,
+    code: CONSTANTS.application.errors.repository.codes.userIsDeleted,
+    message: translations.en.errors.repository.messages.userIsDeleted,
   },
 
   USER_IS_NOT_DISABLED: {
-    code: CONSTANTS.application.errors.database.codes.userisNotDisabled,
-    message: translations.en.errors.database.messages.userIsNotDisabled,
+    code: CONSTANTS.application.errors.repository.codes.userisNotDisabled,
+    message: translations.en.errors.repository.messages.userIsNotDisabled,
   },
 
   USER_IS_NOT_DELETED: {
-    code: CONSTANTS.application.errors.database.codes.userIsNotDeleted,
-    message: translations.en.errors.database.messages.userIsNotDeleted,
+    code: CONSTANTS.application.errors.repository.codes.userIsNotDeleted,
+    message: translations.en.errors.repository.messages.userIsNotDeleted,
   },
 };
 
@@ -60,7 +60,7 @@ export default {
   bot: bot,
   service: service,
   network: network,
-  database: database,
+  repository: repository,
   validation: validation,
   application: application,
 };

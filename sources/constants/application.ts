@@ -4,7 +4,7 @@ export const APPLICATION_CONSTANTS = {
   },
 
   errors: {
-    database: {
+    repository: {
       codes: {
         userNotFound: 'D0001',
         databaseError: 'D0000',

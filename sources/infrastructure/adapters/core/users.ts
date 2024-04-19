@@ -14,7 +14,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
     }
   }
 
@@ -26,7 +26,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
     }
   }
 
@@ -39,7 +39,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.USER_NOT_FOUND.code);
+      throw new errors.RepositoryError(messages.repository.USER_NOT_FOUND.code);
     }
   }
 
@@ -51,7 +51,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
     }
   }
 
@@ -63,7 +63,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
     }
   }
 
@@ -75,7 +75,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
     }
   }
 
@@ -88,7 +88,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
     }
   }
 
@@ -101,7 +101,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
     }
   }
 
@@ -114,7 +114,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.DatabaseError(messages.database.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
     }
   }
 }

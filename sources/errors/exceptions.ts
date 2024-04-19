@@ -1,8 +1,8 @@
 import messages from './messages.js';
 
-class DatabaseError extends Error {
+class RepositoryError extends Error {
   constructor(public code: string) {
-    super(messages.database[code].message);
+    super(messages.repository[code].message);
     Object.setPrototypeOf(this, new.target.prototype);
     Error.captureStackTrace(this, this.constructor);
   }
@@ -100,7 +100,7 @@ export default {
   BotError: BotError,
   ServiceError: ServiceError,
   NetworkError: NetworkError,
-  DatabaseError: DatabaseError,
+  RepositoryError: RepositoryError,
   ValidationError: ValidationError,
   ApplicationError: ApplicationError,
 };

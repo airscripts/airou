@@ -1,6 +1,6 @@
 export const translations = {
   errors: {
-    database: {
+    repository: {
       messages: {
         userNotFound: 'User not found.',
         databaseError: 'Database error.',
