@@ -1,9 +1,9 @@
 import core from '../../core/index.js';
 import CONSTANTS from '../../constants/index.js';
-import { instance as server } from '../../loaders/server.js';
+import { instance as http } from '../../application/http.js';
 
-export function init(): void {
-  server.get(CONSTANTS.http.routes.ping, async () => {
+function init(): void {
+  http.get(CONSTANTS.http.routes.ping, async () => {
     return core.ping.send();
   });
 }

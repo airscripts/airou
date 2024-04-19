@@ -3,11 +3,11 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { Update } from 'telegraf/typings/core/types/typegram';
 
 import CONSTANTS from '../../constants/index.js';
-import { object as bot } from '../../loaders/bot.js';
-import { instance as server } from '../../loaders/server.js';
+import { object as bot } from '../../application/bot.js';
+import { instance as http } from '../../application/http.js';
 
-export function init(): void {
-  server.post(
+function init(): void {
+  http.post(
     CONSTANTS.http.routes.telegram,
     async (request: FastifyRequest, reply: FastifyReply) => {
       const webhook = await bot.webhook();

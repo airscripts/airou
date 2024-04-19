@@ -1,8 +1,8 @@
 import core from '../../core/index.js';
 import CONSTANTS from '../../constants/index.js';
-import { instance as bot } from '../../loaders/bot.js';
+import { instance as bot } from '../../application/bot.js';
 
-export function init() {
+function init() {
   bot.command(CONSTANTS.bot.commands.ping, async (ctx, next) => {
     ctx.reply(core.ping.send());
     if (next) return next();

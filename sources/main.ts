@@ -1,18 +1,19 @@
-import loaders from './loaders/index.js';
+import { object as bot } from './application/bot.js';
+import { object as http } from './application/http.js';
 
-function bot() {
-  loaders.bot.object.session();
-  loaders.bot.object.commands();
+function setupBot() {
+  bot.session();
+  bot.commands();
 }
 
-function server() {
-  loaders.server.object.routes();
-  loaders.server.object.start();
+function setupHttp() {
+  http.routes();
+  http.start();
 }
 
 function main() {
-  bot();
-  server();
+  setupBot();
+  setupHttp();
 }
 
 main();
