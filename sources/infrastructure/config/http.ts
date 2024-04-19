@@ -1,8 +1,8 @@
 import { fastify, FastifyInstance } from 'fastify';
 
-import configs from '../configs/index.js';
-import routes from '../http/routes/index.js';
-import CONSTANTS from '../constants/index.js';
+import configs from '../../configs/index.js';
+import CONSTANTS from '../../constants/index.js';
+import routes from '../adapters/http/routes/index.js';
 
 export class Http {
   private port?: number;

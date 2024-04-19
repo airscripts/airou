@@ -2,15 +2,17 @@
   "name": "airou",
   "type": "module",
   "version": "0.1.0",
-  "main": "./distribution/main.js",
+  "main": "./distribution/sources/app.js",
   "description": "A personal assistant for everyday things.",
   "scripts": {
     "application:clean": "rm -rf ./distribution",
     "application:compile": "npm run application:clean && tsc",
-    "tests:all": "node --import tsx --test tests/**/*.test.ts",
+    "tests:all": "npm run tests:unit && npm run tests:integration",
+    "tests:unit": "node --import tsx --test ./tests/unit/*.test.ts",
     "application:compile.watch": "npm run application:clean && tsc -w",
-    "application:run": "node --no-warnings --watch ./distribution/main.js",
-    "application:apply.migrations": "prisma migrate dev --schema ./sources/database/schema.prisma"
+    "application:run": "node --no-warnings --watch ./distribution/sources/app.js",
+    "tests:integration": "node --import tsx --test ./tests/integration/*.test.ts",
+    "application:apply.migrations": "prisma migrate dev --schema ./sources/infrastructure/database/schema.prisma"
   },
   "repository": {
     "type": "git",

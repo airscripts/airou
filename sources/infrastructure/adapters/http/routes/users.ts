@@ -1,9 +1,14 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 
-import core from '../../core/index.js';
-import CONSTANTS from '../../constants/index.js';
-import { instance as http } from '../../application/http.js';
-import { HttpPost, HttpPatch, HttpDelete } from '../../interfaces/users.js';
+import CONSTANTS from '../../../../constants/index.js';
+import { instance as http } from '../../../config/http.js';
+import services from '../../../../application/services/index.js';
+
+import {
+  UserHttpPost,
+  UserHttpPatch,
+  UserHttpDelete,
+} from '../../../../domain/model/user.js';
 
 class Users {
   public get(): void {
@@ -20,7 +25,7 @@ class Users {
         let data = null;
 
         try {
-          data = await core.users.service[method](param);
+          data = await services.users.instance[method](param);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
@@ -36,14 +41,14 @@ class Users {
     http.post(
       CONSTANTS.http.routes.users,
       async (
-        request: FastifyRequest<{ Body: HttpPost }>,
+        request: FastifyRequest<{ Body: UserHttpPost }>,
         reply: FastifyReply,
       ) => {
         console.info('Executing route POST /users.');
         let data = null;
 
         try {
-          data = await core.users.service.create({
+          data = await services.users.instance.create({
             name: request.body.name,
             email: request.body.email,
           });
@@ -71,7 +76,7 @@ class User {
         let data = null;
 
         try {
-          data = await core.users.service.retrieveById(request.params.id);
+          data = await services.users.instance.retrieveById(request.params.id);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
@@ -87,14 +92,17 @@ class User {
     http.patch(
       CONSTANTS.http.routes.user,
       async (
-        request: FastifyRequest<{ Body: HttpPatch; Params: { id: string } }>,
+        request: FastifyRequest<{
+          Body: UserHttpPatch;
+          Params: { id: string };
+        }>,
         reply: FastifyReply,
       ) => {
         console.info('Executing route PATCH /users.');
         let data = null;
 
         try {
-          data = await core.users.service.update({
+          data = await services.users.instance.update({
             id: request.params.id,
             name: request.body.name,
           });
@@ -113,14 +121,17 @@ class User {
     http.delete(
       CONSTANTS.http.routes.user,
       async (
-        request: FastifyRequest<{ Body: HttpDelete; Params: { id: string } }>,
+        request: FastifyRequest<{
+          Body: UserHttpDelete;
+          Params: { id: string };
+        }>,
         reply: FastifyReply,
       ) => {
         console.info('Executing route DELETE /users.');
         let data = null;
 
         try {
-          data = await core.users.service.remove(request.params.id);
+          data = await services.users.instance.remove(request.params.id);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });

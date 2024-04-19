@@ -1,4 +1,4 @@
-export default {
+export const HTTP_CONSTANTS = {
   server: {
     port: 30000,
     host: '0.0.0.0',
@@ -12,3 +12,5 @@ export default {
     telegram: '/telegram',
   },
 };
+
+export default HTTP_CONSTANTS;

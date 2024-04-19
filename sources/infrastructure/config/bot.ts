@@ -1,9 +1,9 @@
 import type { Update } from 'telegraf/types';
 import { Telegraf, session, type Context } from 'telegraf';
 
-import configs from '../configs/index.js';
-import CONSTANTS from '../constants/index.js';
-import commands from '../bot/commands/index.js';
+import configs from '../../configs/index.js';
+import CONSTANTS from '../../constants/index.js';
+import commands from '../adapters/bot/commands/index.js';
 
 interface BotContext<U extends Update = Update> extends Context<U> {
   session: { user: { id: string } };

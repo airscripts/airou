@@ -1,4 +1,4 @@
-export default {
+export const BOT_CONSTANTS = {
   nid: 'nid',
   token: 'token',
   domain: 'domain',
@@ -12,3 +12,5 @@ export default {
     terminate: 'SIGTERM',
   },
 };
+
+export default BOT_CONSTANTS;

@@ -1,4 +1,4 @@
-const en = {
+export const translations = {
   errors: {
     database: {
       messages: {
@@ -21,6 +21,4 @@ const en = {
   },
 };
 
-export default {
-  en: en,
-};
+export default translations;

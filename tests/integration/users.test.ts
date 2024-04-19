@@ -2,8 +2,9 @@ import { PrismaClient } from '@prisma/client';
 import { describe, it, beforeEach, afterEach } from 'node:test';
 import { deepStrictEqual, notDeepStrictEqual } from 'node:assert';
 
-import core from '../../sources/core/index.js';
 import seeding from '../environment/seeding.js';
+import services from '../../sources/application/services/index.js';
+import { usersRepository } from '../../sources/infrastructure/adapters/core/users.js';
 
 const database = new PrismaClient();
 
@@ -13,26 +14,26 @@ describe('users.service', () => {
   });
 
   it('should retrieve users', async () => {
-    const data = await core.users.service.retrieve()
+    const data = await services.users.instance.retrieve()
     deepStrictEqual(data, seeding.users);
     notDeepStrictEqual(data, []);
   });
 
   it('should retrieve a user', async () => {
     const user = seeding.users[0];
-    const data = await core.users.service.retrieveById(user.id);
+    const data = await services.users.instance.retrieveById(user.id);
     deepStrictEqual(data, user);
   });
 
   it('should retrieve a user by email', async () => {
     const user = seeding.users[0];
-    const data = await core.users.service.retrieveByEmail(user.email);
+    const data = await services.users.instance.retrieveByEmail(user.email);
     deepStrictEqual(data, user);
   });
 
   it('should create a new user', async () => {
     const user = { name: 'Jane Doe', email: 'jane@doe.com' };
-    const data = await core.users.service.create(user);
+    const data = await services.users.instance.create(user);
     deepStrictEqual(data.name, user.name);
     deepStrictEqual(data.email, user.email);
   });
@@ -40,7 +41,7 @@ describe('users.service', () => {
   it('should update a user', async () => {
     const user = seeding.users[0];
 
-    const data = await core.users.service.update({
+    const data = await services.users.instance.update({
       id: user.id,
       name: 'Jane Doe',
     });
@@ -50,19 +51,19 @@ describe('users.service', () => {
 
   it('should disable a user', async () => {
     const user = seeding.users[0];
-    const data = await core.users.service.disable(user.id);
+    const data = await services.users.instance.disable(user.id);
     deepStrictEqual(data.isDisabled, true);
   });
 
   it('should delete logically a user', async () => {
     const user = seeding.users[0];
-    const data = await core.users.service.deleteById(user.id);
+    const data = await services.users.instance.deleteById(user.id);
     deepStrictEqual(data.isDeleted, true);
   });
 
   it('should delete a user', async () => {
     const user = seeding.users[0];
-    const data = await core.users.service.remove(user.id);
+    const data = await services.users.instance.remove(user.id);
     deepStrictEqual(data, seeding.users[0]);
   });
 
@@ -77,26 +78,26 @@ describe('users.repository', () => {
   });
 
   it('should retrieve users', async () => {
-    const data = await core.users.repository.retrieve();
+    const data = await usersRepository.retrieve();
     deepStrictEqual(data, seeding.users);
     notDeepStrictEqual(data, []);
   });
 
   it('should retrieve a user', async () => {
     const user = seeding.users[0];
-    const data = await core.users.repository.retrieveById(user.id);
+    const data = await usersRepository.retrieveById(user.id);
     deepStrictEqual(data, user);
   });
 
   it('should retrieve a user by email', async () => {
     const user = seeding.users[0];
-    const data = await core.users.repository.retrieveByEmail(user.email);
+    const data = await usersRepository.retrieveByEmail(user.email);
     deepStrictEqual(data, user);
   });
 
   it('should create a new user', async () => {
     const user = { name: 'Jane Doe', email: 'jane@doe.com' };
-    const data = await core.users.repository.create(user);
+    const data = await usersRepository.create(user);
     deepStrictEqual(data.name, user.name);
     deepStrictEqual(data.email, user.email);
   });
@@ -104,7 +105,7 @@ describe('users.repository', () => {
   it('should update a user', async () => {
     const user = seeding.users[0];
 
-    const data = await core.users.repository.update({
+    const data = await usersRepository.update({
       id: user.id,
       name: 'Jane Doe',
     });
@@ -114,19 +115,19 @@ describe('users.repository', () => {
 
   it('should disable a user', async () => {
     const user = seeding.users[0];
-    const data = await core.users.repository.disable(user.id);
+    const data = await usersRepository.disable(user.id);
     deepStrictEqual(data.isDisabled, true);
   });
 
   it('should delete logically a user', async () => {
     const user = seeding.users[0];
-    const data = await core.users.repository.deleteById(user.id);
+    const data = await usersRepository.deleteById(user.id);
     deepStrictEqual(data.isDeleted, true);
   });
 
   it('should delete a user', async () => {
     const user = seeding.users[0];
-    const data = await core.users.repository.remove(user.id);
+    const data = await usersRepository.remove(user.id);
     deepStrictEqual(data, seeding.users[0]);
   });
 

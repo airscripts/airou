@@ -1,4 +1,4 @@
-export default {
+export const APPLICATION_CONSTANTS = {
   messages: {
     ping: 'pong',
   },
@@ -29,3 +29,5 @@ export default {
     application: {},
   },
 };
+
+export default APPLICATION_CONSTANTS;

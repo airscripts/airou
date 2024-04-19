@@ -1,6 +1,6 @@
 import CONSTANTS from '../constants/index.js';
 
-export default {
+export const botConfigs = {
   token: process.env.BOT_TOKEN || CONSTANTS.bot.token,
 
   webhook: {
@@ -14,3 +14,5 @@ export default {
     },
   },
 };
+
+export default botConfigs;

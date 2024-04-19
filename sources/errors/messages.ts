@@ -1,6 +1,6 @@
-import translations from './translations.js';
 import CONSTANTS from '../constants/index.js';
-import { Message } from '../interfaces/application.js';
+import translations from '../translations/index.js';
+import { Message } from '../domain/model/application.js';
 
 const database: Message = {
   DATABASE_ERROR: {
