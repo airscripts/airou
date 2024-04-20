@@ -4,7 +4,7 @@ import errors from '../../../../errors/exceptions.error.js';
 import {
   Repository,
   RepositoryLocatorType,
-} from '../../../../domain/ports/locator.repository.interface.js';
+} from '../../../../domain/ports/locator.repository.port.js';
 
 class RepositoryLocator<T> {
   private repositories: Repository<T> = {};

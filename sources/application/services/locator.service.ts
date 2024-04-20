@@ -4,7 +4,7 @@ import errors from '../../errors/exceptions.error.js';
 import {
   Service,
   ServiceLocatorType,
-} from '../../domain/ports/locator.service.interface.js';
+} from '../../domain/ports/locator.service.port.js';
 
 class ServiceLocator<T> {
   private services: Service<T> = {};

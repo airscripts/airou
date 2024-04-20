@@ -1,4 +1,4 @@
-import UsersService from './users.service.interface.js';
+import UsersService from './users.service.port.js';
 
 type ServiceLocatorType = UsersService;
 

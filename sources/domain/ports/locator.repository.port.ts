@@ -1,4 +1,4 @@
-import UsersRepository from './users.repository.interface.js';
+import UsersRepository from './users.repository.port.js';
 
 type RepositoryLocatorType = UsersRepository;
 

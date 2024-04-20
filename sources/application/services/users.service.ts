@@ -1,6 +1,6 @@
 import messages from '../../errors/messages.error.js';
 import errors from '../../errors/exceptions.error.js';
-import { UsersServiceType } from '../../domain/ports/users.service.interface.js';
+import { UsersServiceType } from '../../domain/ports/users.service.port.js';
 import repositories from '../../infrastructure/adapters/core/repositories/index.js';
 import { UsersRepository } from '../../infrastructure/adapters/core/repositories/users.repository.js';
 
