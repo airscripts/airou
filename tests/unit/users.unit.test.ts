@@ -5,7 +5,7 @@ import mocks from '../env/mocks.env.js';
 import CONSTANTS from '../constants/index.js';
 import services from '../../sources/application/services/index.js';
 
-describe('users.service', () => {
+describe(CONSTANTS.tests.unit.describes.users.service, () => {
   const users = mocks.users;
 
   before(() => {
@@ -66,51 +66,51 @@ describe('users.service', () => {
     );
   });
 
-  it('should retrieve users', async () => {
+  it(CONSTANTS.tests.unit.it.users.retrieve, async () => {
     const data = await services.users.instance.retrieve();
     deepStrictEqual(data, users);
     notDeepStrictEqual(data, []);
   });
 
-  it('should retrieve a user', async () => {
+  it(CONSTANTS.tests.unit.it.users.retrieveById, async () => {
     const user = users[0];
     const data = await services.users.instance.retrieveById(user.id);
     deepStrictEqual(data, user);
   });
 
-  it('should retrieve a user by email', async () => {
+  it(CONSTANTS.tests.unit.it.users.retrieveByEmail, async () => {
     const user = users[0];
     const data = await services.users.instance.retrieveByEmail(user.email);
     deepStrictEqual(data, user);
   });
 
-  it('should create a new user', async () => {
+  it(CONSTANTS.tests.unit.it.users.create, async () => {
     const user = { name: users[1].name, email: users[1].email };
     const data = await services.users.instance.create(user);
     deepStrictEqual(data.name, user.name);
     deepStrictEqual(data.email, user.email);
   });
 
-  it('should update a user', async () => {
+  it(CONSTANTS.tests.unit.it.users.update, async () => {
     const user = users[0];
     const payload = { id: user.id, name: user.name };
     const data = await services.users.instance.update(payload);
     deepStrictEqual(data.name, user.name);
   });
 
-  it('should disable a user', async () => {
+  it(CONSTANTS.tests.unit.it.users.disable, async () => {
     const id = users[0].id;
     const data = await services.users.instance.disable(id);
     deepStrictEqual(data.isDisabled, true);
   });
 
-  it('should delete logically a user', async () => {
+  it(CONSTANTS.tests.unit.it.users.deleteById, async () => {
     const id = users[0].id;
     const data = await services.users.instance.deleteById(id);
     deepStrictEqual(data.isDeleted, true);
   });
 
-  it('should delete a user', async () => {
+  it(CONSTANTS.tests.unit.it.users.remove, async () => {
     const id = users[0].id;
     const data = await services.users.instance.remove(id);
     deepStrictEqual(data, users[1]);
