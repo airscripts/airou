@@ -9,7 +9,7 @@ import {
 class ServiceLocator<T> {
   private services: Service<T> = {};
 
-  public registerService(key: string, instance: T) {
+  public registerService(key: string, instance: T): void {
     this.services[key] = instance;
   }
 

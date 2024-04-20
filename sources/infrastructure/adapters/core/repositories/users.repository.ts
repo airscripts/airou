@@ -4,12 +4,19 @@ import { instance as database } from '../../../config/database.config.js';
 import { UsersRepositoryType } from '../../../../domain/ports/users.repository.interface.js';
 
 import {
-  UserRepositoryCreate,
-  UserRepositoryUpdate,
+  User,
+  UserRepositoryCreatePayload,
+  UserRepositoryUpdatePayload,
+  UserRepositoryRemovePayload,
+  UserRepositoryEnablePayload,
+  UserRepositoryDisablePayload,
+  UserRepositoryDeleteByIdPayload,
+  UserRepositoryRetrieveByIdPayload,
+  UserRepositoryRetrieveByEmailPayload,
 } from '../../../../domain/model/user.model.js';
 
 export class UsersRepository implements UsersRepositoryType {
-  public async retrieve() {
+  public async retrieve(): Promise<User[]> {
     try {
       return await database.user.findMany();
     } catch (error) {
@@ -18,7 +25,7 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async create(user: UserRepositoryCreate) {
+  public async create(user: UserRepositoryCreatePayload): Promise<User> {
     try {
       const payload = { name: user.name, email: user.email };
       return await database.user.create({ data: payload });
@@ -28,7 +35,7 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async update(user: UserRepositoryUpdate) {
+  public async update(user: UserRepositoryUpdatePayload): Promise<User> {
     try {
       const conditions = { id: user.id };
       const payload = { name: user.name };
@@ -39,7 +46,7 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async remove(id: string) {
+  public async remove(id: UserRepositoryRemovePayload): Promise<User> {
     try {
       const conditions = { id: id };
       return await database.user.delete({ where: conditions });
@@ -49,7 +56,9 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async retrieveById(id: string) {
+  public async retrieveById(
+    id: UserRepositoryRetrieveByIdPayload,
+  ): Promise<User | null> {
     try {
       const conditions = { id: id };
       return await database.user.findUnique({ where: conditions });
@@ -59,7 +68,9 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async retrieveByEmail(email: string) {
+  public async retrieveByEmail(
+    email: UserRepositoryRetrieveByEmailPayload,
+  ): Promise<User | null> {
     try {
       const conditions = { email: email };
       return await database.user.findUnique({ where: conditions });
@@ -69,7 +80,7 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async disable(id: string) {
+  public async disable(id: UserRepositoryDisablePayload): Promise<User> {
     try {
       const conditions = { id: id };
       const payload = { isDisabled: true };
@@ -80,7 +91,7 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async enable(id: string) {
+  public async enable(id: UserRepositoryEnablePayload): Promise<User> {
     try {
       const conditions = { id: id };
       const payload = { isDisabled: false };
@@ -91,7 +102,7 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async deleteById(id: string) {
+  public async deleteById(id: UserRepositoryDeleteByIdPayload): Promise<User> {
     try {
       const conditions = { id: id };
       const payload = { isDeleted: true };

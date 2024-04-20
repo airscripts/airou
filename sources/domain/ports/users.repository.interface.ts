@@ -1,21 +1,30 @@
 import {
   User,
-  UserRepositoryCreate,
-  UserRepositoryUpdate,
+  UserRepositoryCreatePayload,
+  UserRepositoryUpdatePayload,
+  UserRepositoryRemovePayload,
+  UserRepositoryEnablePayload,
+  UserRepositoryDisablePayload,
+  UserRepositoryDeleteByIdPayload,
+  UserRepositoryRetrieveByIdPayload,
+  UserRepositoryRetrieveByEmailPayload,
 } from '../model/user.model.js';
 
 type UsersRepositoryType = UsersRepository;
 
 interface UsersRepository {
   retrieve(): Promise<User[]>;
-  remove(id: string): Promise<User>;
-  enable(id: string): Promise<User>;
-  disable(id: string): Promise<User>;
-  deleteById(id: string): Promise<User>;
-  retrieveById(id: string): Promise<User | null>;
-  create(user: UserRepositoryCreate): Promise<User>;
-  update(user: UserRepositoryUpdate): Promise<User>;
-  retrieveByEmail(email: string): Promise<User | null>;
+  remove(id: UserRepositoryRemovePayload): Promise<User>;
+  enable(id: UserRepositoryEnablePayload): Promise<User>;
+  disable(id: UserRepositoryDisablePayload): Promise<User>;
+  create(user: UserRepositoryCreatePayload): Promise<User>;
+  update(user: UserRepositoryUpdatePayload): Promise<User>;
+  deleteById(id: UserRepositoryDeleteByIdPayload): Promise<User>;
+  retrieveById(id: UserRepositoryRetrieveByIdPayload): Promise<User | null>;
+
+  retrieveByEmail(
+    email: UserRepositoryRetrieveByEmailPayload,
+  ): Promise<User | null>;
 }
 
 export { UsersRepository, UsersRepositoryType };

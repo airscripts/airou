@@ -1,6 +1,6 @@
 import CONSTANTS from "../../../../constants/index.js";
 
-function send() {
+function send(): string {
   return CONSTANTS.application.generic.ping;
 }
 

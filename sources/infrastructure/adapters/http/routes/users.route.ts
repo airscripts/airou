@@ -3,30 +3,36 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import CONSTANTS from '../../../../constants/index.js';
 import services from '../../../../application/services/index.js';
 import { instance as http } from '../../../config/http.config.js';
+import UsersService from '../../../../domain/ports/users.service.interface.js';
 
 import {
-  UserHttpPost,
+  UserHttpGet,
+  UsersHttpGet,
+  UsersHttpPost,
   UserHttpPatch,
   UserHttpDelete,
 } from '../../../../domain/model/user.model.js';
 
 class Users {
-  private service: string = CONSTANTS.application.services.users;
+  private service: UsersService = services.locator.getService(
+    CONSTANTS.application.services.users,
+  );
+
+  private async retrieve(payload: { email?: string } = {}) {
+    const { email } = payload;
+    if (email) return await this.service.retrieveByEmail(email);
+    else return await this.service.retrieve();
+  }
 
   public get(): void {
     http.get(
       CONSTANTS.http.routes.users,
-      async (
-        request: FastifyRequest<{ Querystring: { email?: string } }>,
-        reply: FastifyReply,
-      ) => {
+      async (request: FastifyRequest<UsersHttpGet>, reply: FastifyReply) => {
         let data;
-        const { email } = request.query;
-        const param = email || '';
-        const method = email ? 'retrieveByEmail' : 'retrieve';
 
         try {
-          data = await services.locator.getService(this.service)[method](param);
+          const payload = { email: request.query.email };
+          data = await this.retrieve(payload);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
@@ -40,18 +46,12 @@ class Users {
   public post(): void {
     http.post(
       CONSTANTS.http.routes.users,
-      async (
-        request: FastifyRequest<{ Body: UserHttpPost }>,
-        reply: FastifyReply,
-      ) => {
+      async (request: FastifyRequest<UsersHttpPost>, reply: FastifyReply) => {
         let data;
-        const { name, email } = request.body;
 
         try {
-          data = await services.locator.getService(this.service).create({
-            name: name,
-            email: email,
-          });
+          const { name, email } = request.body;
+          data = await this.service.create({ name: name, email: email });
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
@@ -64,22 +64,19 @@ class Users {
 }
 
 class User {
-  private service: string = CONSTANTS.application.services.users;
+  private service: UsersService = services.locator.getService(
+    CONSTANTS.application.services.users,
+  );
 
   public get(): void {
     http.get(
       CONSTANTS.http.routes.user,
-      async (
-        request: FastifyRequest<{ Params: { id: string } }>,
-        reply: FastifyReply,
-      ) => {
+      async (request: FastifyRequest<UserHttpGet>, reply: FastifyReply) => {
         let data;
-        const { id } = request.params;
 
         try {
-          data = await services.locator
-            .getService(this.service)
-            .retrieveById(id);
+          const { id } = request.params;
+          data = await this.service.retrieveById(id);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
@@ -93,22 +90,13 @@ class User {
   public patch(): void {
     http.patch(
       CONSTANTS.http.routes.user,
-      async (
-        request: FastifyRequest<{
-          Body: UserHttpPatch;
-          Params: { id: string };
-        }>,
-        reply: FastifyReply,
-      ) => {
+      async (request: FastifyRequest<UserHttpPatch>, reply: FastifyReply) => {
         let data;
-        const { id } = request.params;
-        const { name } = request.body;
 
         try {
-          data = await services.locator.getService(this.service).update({
-            id: id,
-            name: name,
-          });
+          const { id } = request.params;
+          const { name } = request.body;
+          data = await this.service.update({ id: id, name: name });
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
@@ -122,18 +110,12 @@ class User {
   public delete(): void {
     http.delete(
       CONSTANTS.http.routes.user,
-      async (
-        request: FastifyRequest<{
-          Body: UserHttpDelete;
-          Params: { id: string };
-        }>,
-        reply: FastifyReply,
-      ) => {
+      async (request: FastifyRequest<UserHttpDelete>, reply: FastifyReply) => {
         let data;
-        const { id } = request.params;
 
         try {
-          data = await services.locator.getService(this.service).remove(id);
+          const { id } = request.params;
+          data = await this.service.remove(id);
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });

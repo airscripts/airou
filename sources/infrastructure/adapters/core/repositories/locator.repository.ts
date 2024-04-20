@@ -9,7 +9,7 @@ import {
 class RepositoryLocator<T> {
   private repositories: Repository<T> = {};
 
-  public registerRepository(key: string, instance: T) {
+  public registerRepository(key: string, instance: T): void {
     this.repositories[key] = instance;
   }
 

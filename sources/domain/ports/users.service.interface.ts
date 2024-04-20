@@ -1,21 +1,30 @@
 import {
   User,
-  UserServiceCreate,
-  UserServiceUpdate,
+  UserServiceCreatePayload,
+  UserServiceUpdatePayload,
+  UserServiceRemovePayload,
+  UserServiceEnablePayload,
+  UserServiceDisablePayload,
+  UserServiceDeleteByIdPayload,
+  UserServiceRetrieveByIdPayload,
+  UserServiceRetrieveByEmailPayload,
 } from '../model/user.model.js';
 
 type UsersServiceType = UsersService;
 
 interface UsersService {
   retrieve(): Promise<User[]>;
-  remove(id: string): Promise<User>;
-  enable(id: string): Promise<User>;
-  disable(id: string): Promise<User>;
-  deleteById(id: string): Promise<User>;
-  create(user: UserServiceCreate): Promise<User>;
-  update(user: UserServiceUpdate): Promise<User>;
-  retrieveById(id: string): Promise<User | null>;
-  retrieveByEmail(email: string): Promise<User | null>;
+  remove(id: UserServiceRemovePayload): Promise<User>;
+  enable(id: UserServiceEnablePayload): Promise<User>;
+  disable(id: UserServiceDisablePayload): Promise<User>;
+  create(user: UserServiceCreatePayload): Promise<User>;
+  update(user: UserServiceUpdatePayload): Promise<User>;
+  deleteById(id: UserServiceDeleteByIdPayload): Promise<User>;
+  retrieveById(id: UserServiceRetrieveByIdPayload): Promise<User | null>;
+
+  retrieveByEmail(
+    email: UserServiceRetrieveByEmailPayload,
+  ): Promise<User | null>;
 }
 
 export { UsersService, UsersServiceType };
