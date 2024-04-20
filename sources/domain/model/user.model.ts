@@ -42,7 +42,7 @@ interface UsersHttpGet {
   };
 }
 
-interface UsersHttpPost extends Pick<User, name> {
+interface UsersHttpPost {
   Body: {
     name: User[name];
     email?: User[email];
@@ -66,7 +66,7 @@ interface UserHttpPatch {
   };
 }
 
-interface UserHttpDelete extends Pick<User, id> {
+interface UserHttpDelete {
   Body: {
     id: User[id];
   };
