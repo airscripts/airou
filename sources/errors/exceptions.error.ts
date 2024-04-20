@@ -1,5 +1,4 @@
-import messages from './messages.error.js';
-import { Message } from '../domain/model/application.model.js';
+import { Message } from '../domain/model/message.model.js';
 
 class RepositoryError extends Error {
   constructor(public error: Message) {

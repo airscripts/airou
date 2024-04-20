@@ -1,7 +1,7 @@
-import ping from './ping.helper.js';
-import users from './users.repository.js';
+import helpers from './helpers/index.js';
+import repositories from './repositories/index.js';
 
 export default {
-  ping: ping,
-  users: users,
+  helpers: helpers,
+  repositories: repositories,
 };

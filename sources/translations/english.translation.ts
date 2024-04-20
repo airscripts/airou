@@ -9,12 +9,14 @@ export const english = {
         userIsNotDeleted: 'User is not deleted.',
         userAlreadyExists: 'User already exists.',
         userIsNotDisabled: 'User is not disabled.',
+        repositoryNotFound: 'Repository not found.',
       },
     },
 
     service: {
       messages: {
         serviceError: 'Service error.',
+        serviceNotFound: 'Service not found.',
         missingUserName: 'Missing user name.',
       },
     },

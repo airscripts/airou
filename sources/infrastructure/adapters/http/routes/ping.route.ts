@@ -4,7 +4,7 @@ import { instance as http } from '../../../config/http.config.js';
 
 function init(): void {
   http.get(CONSTANTS.http.routes.ping, async () => {
-    return core.ping.send();
+    return core.helpers.ping.send();
   });
 }
 

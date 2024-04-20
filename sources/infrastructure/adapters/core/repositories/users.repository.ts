@@ -1,19 +1,18 @@
-import messages from '../../../errors/messages.error.js';
-import { instance as database } from '../../config/database.config.js';
-import errors, { assertIsError } from '../../../errors/exceptions.error.js';
-import { UsersRepositoryType } from '../../../domain/ports/users.repository.interface.js';
+import messages from '../../../../errors/messages.error.js';
+import errors from '../../../../errors/exceptions.error.js';
+import { instance as database } from '../../../config/database.config.js';
+import { UsersRepositoryType } from '../../../../domain/ports/users.repository.interface.js';
 
 import {
   UserRepositoryCreate,
   UserRepositoryUpdate,
-} from '../../../domain/model/user.model.js';
+} from '../../../../domain/model/user.model.js';
 
 export class UsersRepository implements UsersRepositoryType {
   public async retrieve() {
     try {
       return await database.user.findMany();
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
@@ -21,11 +20,9 @@ export class UsersRepository implements UsersRepositoryType {
 
   public async create(user: UserRepositoryCreate) {
     try {
-      return await database.user.create({
-        data: { name: user.name, email: user.email },
-      });
+      const payload = { name: user.name, email: user.email };
+      return await database.user.create({ data: payload });
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
@@ -33,12 +30,10 @@ export class UsersRepository implements UsersRepositoryType {
 
   public async update(user: UserRepositoryUpdate) {
     try {
-      return await database.user.update({
-        where: { id: user.id },
-        data: { name: user.name },
-      });
+      const conditions = { id: user.id };
+      const payload = { name: user.name };
+      return await database.user.update({ where: conditions, data: payload });
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.USER_NOT_FOUND);
     }
@@ -46,11 +41,9 @@ export class UsersRepository implements UsersRepositoryType {
 
   public async remove(id: string) {
     try {
-      return await database.user.delete({
-        where: { id: id },
-      });
+      const conditions = { id: id };
+      return await database.user.delete({ where: conditions });
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
@@ -58,11 +51,9 @@ export class UsersRepository implements UsersRepositoryType {
 
   public async retrieveById(id: string) {
     try {
-      return await database.user.findUnique({
-        where: { id: id },
-      });
+      const conditions = { id: id };
+      return await database.user.findUnique({ where: conditions });
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
@@ -70,11 +61,9 @@ export class UsersRepository implements UsersRepositoryType {
 
   public async retrieveByEmail(email: string) {
     try {
-      return await database.user.findUnique({
-        where: { email: email },
-      });
+      const conditions = { email: email };
+      return await database.user.findUnique({ where: conditions });
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
@@ -82,12 +71,10 @@ export class UsersRepository implements UsersRepositoryType {
 
   public async disable(id: string) {
     try {
-      return await database.user.update({
-        where: { id: id },
-        data: { isDisabled: true },
-      });
+      const conditions = { id: id };
+      const payload = { isDisabled: true };
+      return await database.user.update({ where: conditions, data: payload });
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
@@ -95,12 +82,10 @@ export class UsersRepository implements UsersRepositoryType {
 
   public async enable(id: string) {
     try {
-      return await database.user.update({
-        where: { id: id },
-        data: { isDisabled: false },
-      });
+      const conditions = { id: id };
+      const payload = { isDisabled: false };
+      return await database.user.update({ where: conditions, data: payload });
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
@@ -108,12 +93,10 @@ export class UsersRepository implements UsersRepositoryType {
 
   public async deleteById(id: string) {
     try {
-      return await database.user.update({
-        where: { id: id },
-        data: { isDeleted: true },
-      });
+      const conditions = { id: id };
+      const payload = { isDeleted: true };
+      return await database.user.update({ where: conditions, data: payload });
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }

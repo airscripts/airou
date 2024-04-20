@@ -5,9 +5,8 @@ import {
 } from '../model/user.model.js';
 
 type UsersRepositoryType = UsersRepository;
-export { UsersRepository, UsersRepositoryType };
 
-export default interface UsersRepository {
+interface UsersRepository {
   retrieve(): Promise<User[]>;
   remove(id: string): Promise<User>;
   enable(id: string): Promise<User>;
@@ -18,3 +17,6 @@ export default interface UsersRepository {
   update(user: UserRepositoryUpdate): Promise<User>;
   retrieveByEmail(email: string): Promise<User | null>;
 }
+
+export { UsersRepository, UsersRepositoryType };
+export default UsersRepository;

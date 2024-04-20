@@ -5,9 +5,8 @@ import {
 } from '../model/user.model.js';
 
 type UsersServiceType = UsersService;
-export { UsersService, UsersServiceType };
 
-export default interface UsersService {
+interface UsersService {
   retrieve(): Promise<User[]>;
   remove(id: string): Promise<User>;
   enable(id: string): Promise<User>;
@@ -18,3 +17,6 @@ export default interface UsersService {
   retrieveById(id: string): Promise<User | null>;
   retrieveByEmail(email: string): Promise<User | null>;
 }
+
+export { UsersService, UsersServiceType };
+export default UsersService;

@@ -28,6 +28,18 @@ interface UserHttpPatch extends Pick<User, id> {
   name?: User[name];
 }
 
+interface User {
+  id: string;
+  name: string;
+  updatedAt: Date;
+  createdAt: Date;
+  isDeleted: boolean;
+  isDisabled: boolean;
+  email: string | null;
+  deletedAt: Date | null;
+  disabledAt: Date | null;
+}
+
 export {
   User,
   UserHttpPost,
@@ -39,14 +51,4 @@ export {
   UserRepositoryUpdate,
 }
 
-export default interface User {
-  id: string;
-  name: string;
-  updatedAt: Date;
-  createdAt: Date;
-  isDeleted: boolean;
-  isDisabled: boolean;
-  email: string | null;
-  deletedAt: Date | null;
-  disabledAt: Date | null;
-}
+export default User;

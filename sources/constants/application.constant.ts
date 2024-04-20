@@ -1,6 +1,14 @@
 export const APPLICATION_CONSTANTS = {
-  messages: {
+  generic: {
     ping: 'pong',
+  },
+
+  services: {
+    users: 'users',
+  },
+
+  repositories: {
+    users: 'users',
   },
 
   errors: {
@@ -13,14 +21,16 @@ export const APPLICATION_CONSTANTS = {
         userIsNotDeleted: 'R0006',
         userAlreadyExists: 'R0002',
         userisNotDisabled: 'R0005',
-      }
+        repositoryNotFound: 'R0007',
+      },
     },
 
     service: {
       codes: {
         serviceError: 'S0000',
         missingUserName: 'S0001',
-      }
+        serviceNotFound: 'S0002',
+      },
     },
 
     bot: {},

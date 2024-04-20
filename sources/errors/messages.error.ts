@@ -1,11 +1,16 @@
 import CONSTANTS from '../constants/index.js';
 import translations from '../translations/index.js';
-import MessageMap from '../domain/model/application.model.js';
+import MessageMap from '../domain/model/message.model.js';
 
 const repository: MessageMap = {
   DATABASE_ERROR: {
     code: CONSTANTS.application.errors.repository.codes.databaseError,
     message: translations.en.errors.repository.messages.databaseError,
+  },
+
+  REPOSITORY_NOT_FOUND: {
+    code: CONSTANTS.application.errors.repository.codes.repositoryNotFound,
+    message: translations.en.errors.repository.messages.repositoryNotFound,
   },
 
   USER_NOT_FOUND: {
@@ -43,6 +48,11 @@ const service: MessageMap = {
   SERVICE_ERROR: {
     code: CONSTANTS.application.errors.service.codes.serviceError,
     message: translations.en.errors.service.messages.serviceError,
+  },
+
+  SERVICE_NOT_FOUND: {
+    code: CONSTANTS.application.errors.service.codes.serviceNotFound,
+    message: translations.en.errors.service.messages.serviceNotFound,
   },
 
   MISSING_USER_NAME: {

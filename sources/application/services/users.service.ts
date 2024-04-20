@@ -1,8 +1,8 @@
 import messages from '../../errors/messages.error.js';
-import repositories from '../../infrastructure/adapters/core/index.js';
 import errors, { assertIsError } from '../../errors/exceptions.error.js';
 import { UsersServiceType } from '../../domain/ports/users.service.interface.js';
-import { UsersRepository } from '../../infrastructure/adapters/core/users.repository.js';
+import repositories from '../../infrastructure/adapters/core/repositories/index.js';
+import { UsersRepository } from '../../infrastructure/adapters/core/repositories/users.repository.js';
 
 import {
   UserServiceCreate,
@@ -13,7 +13,7 @@ export class UsersService implements UsersServiceType {
   private repository: UsersRepository;
 
   constructor(
-    repository: UsersRepository = new repositories.users.UsersRepository(),
+    repository: UsersRepository = repositories.locator.getRepository('users'),
   ) {
     this.repository = repository;
   }
@@ -22,7 +22,6 @@ export class UsersService implements UsersServiceType {
     try {
       return await this.repository.retrieve();
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
@@ -35,7 +34,6 @@ export class UsersService implements UsersServiceType {
 
       return await this.repository.create(user);
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
@@ -45,7 +43,6 @@ export class UsersService implements UsersServiceType {
     try {
       return await this.repository.update(user);
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
@@ -55,7 +52,6 @@ export class UsersService implements UsersServiceType {
     try {
       return await this.repository.remove(id);
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
@@ -65,7 +61,6 @@ export class UsersService implements UsersServiceType {
     try {
       return await this.repository.retrieveById(id);
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
@@ -75,7 +70,6 @@ export class UsersService implements UsersServiceType {
     try {
       return await this.repository.retrieveByEmail(email);
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
@@ -85,7 +79,6 @@ export class UsersService implements UsersServiceType {
     try {
       return await this.repository.disable(id);
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
@@ -95,7 +88,6 @@ export class UsersService implements UsersServiceType {
     try {
       return await this.repository.enable(id);
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
@@ -105,7 +97,6 @@ export class UsersService implements UsersServiceType {
     try {
       return await this.repository.deleteById(id);
     } catch (error) {
-      assertIsError(error);
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
