@@ -3,8 +3,8 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { Update } from 'telegraf/typings/core/types/typegram';
 
 import CONSTANTS from '../../../../constants/index.js';
-import { object as bot } from '../../../config/bot.js';
-import { instance as http } from '../../../config/http.js';
+import { object as bot } from '../../../config/bot.config.js';
+import { instance as http } from '../../../config/http.config.js';
 
 function init(): void {
   http.post(

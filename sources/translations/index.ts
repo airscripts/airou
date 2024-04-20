@@ -1,4 +1,4 @@
-import en from './en.js';
+import en from './english.translation.js';
 
 export default {
   en: en,

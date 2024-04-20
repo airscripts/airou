@@ -1,5 +1,5 @@
-import ping from './ping.js';
-import users from './users.js';
+import ping from './ping.helper.js';
+import users from './users.repository.js';
 
 export default {
   ping: ping,

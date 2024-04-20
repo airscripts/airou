@@ -1,6 +1,6 @@
-import bot from './bot.js';
-import http from './http.js';
-import application from './application.js';
+import bot from './bot.constant.js';
+import http from './http.constant.js';
+import application from './application.constant.js';
 
 export default {
   bot: bot,

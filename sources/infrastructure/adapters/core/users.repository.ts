@@ -1,20 +1,21 @@
-import messages from '../../../errors/messages.js';
-import { instance as database } from '../../config/database.js';
-import errors, { assertIsError } from '../../../errors/exceptions.js';
+import messages from '../../../errors/messages.error.js';
+import { instance as database } from '../../config/database.config.js';
+import errors, { assertIsError } from '../../../errors/exceptions.error.js';
+import { UsersRepositoryType } from '../../../domain/ports/users.repository.interface.js';
 
 import {
   UserRepositoryCreate,
   UserRepositoryUpdate,
-} from '../../../domain/model/user.js';
+} from '../../../domain/model/user.model.js';
 
-export class UsersRepository {
+export class UsersRepository implements UsersRepositoryType {
   public async retrieve() {
     try {
       return await database.user.findMany();
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
   }
 
@@ -26,7 +27,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
   }
 
@@ -39,7 +40,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.USER_NOT_FOUND.code);
+      throw new errors.RepositoryError(messages.repository.USER_NOT_FOUND);
     }
   }
 
@@ -51,7 +52,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
   }
 
@@ -63,7 +64,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
   }
 
@@ -75,7 +76,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
   }
 
@@ -88,7 +89,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
   }
 
@@ -101,7 +102,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
   }
 
@@ -114,7 +115,7 @@ export class UsersRepository {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR.code);
+      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
     }
   }
 }

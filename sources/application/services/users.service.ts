@@ -1,13 +1,13 @@
-import messages from '../../errors/messages.js';
-import { UsersServiceType } from '../../domain/ports/users.js';
-import errors, { assertIsError } from '../../errors/exceptions.js';
+import messages from '../../errors/messages.error.js';
 import repositories from '../../infrastructure/adapters/core/index.js';
-import { UsersRepository } from '../../infrastructure/adapters/core/users.js';
+import errors, { assertIsError } from '../../errors/exceptions.error.js';
+import { UsersServiceType } from '../../domain/ports/users.service.interface.js';
+import { UsersRepository } from '../../infrastructure/adapters/core/users.repository.js';
 
 import {
   UserServiceCreate,
   UserServiceUpdate,
-} from '../../domain/model/user.js';
+} from '../../domain/model/user.model.js';
 
 export class UsersService implements UsersServiceType {
   private repository: UsersRepository;
@@ -24,20 +24,20 @@ export class UsersService implements UsersServiceType {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
   public async create(user: UserServiceCreate) {
     try {
       if (!user.name)
-        throw new errors.ServiceError(messages.service.MISSING_NAME.code);
+        throw new errors.ServiceError(messages.service.MISSING_NAME);
 
       return await this.repository.create(user);
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
@@ -47,7 +47,7 @@ export class UsersService implements UsersServiceType {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
@@ -57,7 +57,7 @@ export class UsersService implements UsersServiceType {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
@@ -67,7 +67,7 @@ export class UsersService implements UsersServiceType {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
@@ -77,7 +77,7 @@ export class UsersService implements UsersServiceType {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
@@ -87,7 +87,7 @@ export class UsersService implements UsersServiceType {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
@@ -97,7 +97,7 @@ export class UsersService implements UsersServiceType {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
@@ -107,7 +107,7 @@ export class UsersService implements UsersServiceType {
     } catch (error) {
       assertIsError(error);
       console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR.code);
+      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 }

@@ -1,4 +1,4 @@
-export const translations = {
+export const english = {
   errors: {
     repository: {
       messages: {
@@ -21,4 +21,4 @@ export const translations = {
   },
 };
 
-export default translations;
+export default english;

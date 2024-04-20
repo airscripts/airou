@@ -1,5 +1,5 @@
-import messages from "./messages.js";
-import exceptions from "./exceptions.js";
+import messages from "./messages.error.js";
+import exceptions from "./exceptions.error.js";
 
 export default {
   messages: messages,

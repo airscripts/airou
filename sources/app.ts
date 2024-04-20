@@ -1,5 +1,5 @@
-import { object as bot } from './infrastructure/config/bot.js';
-import { object as http } from './infrastructure/config/http.js';
+import { object as bot } from './infrastructure/config/bot.config.js';
+import { object as http } from './infrastructure/config/http.config.js';
 
 function setupBot() {
   bot.session();

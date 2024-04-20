@@ -1,14 +1,14 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 
 import CONSTANTS from '../../../../constants/index.js';
-import { instance as http } from '../../../config/http.js';
+import { instance as http } from '../../../config/http.config.js';
 import services from '../../../../application/services/index.js';
 
 import {
   UserHttpPost,
   UserHttpPatch,
   UserHttpDelete,
-} from '../../../../domain/model/user.js';
+} from '../../../../domain/model/user.model.js';
 
 class Users {
   public get(): void {

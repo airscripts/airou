@@ -1,8 +1,8 @@
 import CONSTANTS from '../constants/index.js';
 import translations from '../translations/index.js';
-import { Message } from '../domain/model/application.js';
+import MessageMap from '../domain/model/application.model.js';
 
-const repository: Message = {
+const repository: MessageMap = {
   DATABASE_ERROR: {
     code: CONSTANTS.application.errors.repository.codes.databaseError,
     message: translations.en.errors.repository.messages.databaseError,
@@ -39,7 +39,7 @@ const repository: Message = {
   },
 };
 
-const service: Message = {
+const service: MessageMap = {
   SERVICE_ERROR: {
     code: CONSTANTS.application.errors.service.codes.serviceError,
     message: translations.en.errors.service.messages.serviceError,
@@ -51,10 +51,10 @@ const service: Message = {
   },
 };
 
-const bot: Message = {};
-const network: Message = {};
-const validation: Message = {};
-const application: Message = {};
+const bot: MessageMap = {};
+const network: MessageMap = {};
+const validation: MessageMap = {};
+const application: MessageMap = {};
 
 export default {
   bot: bot,

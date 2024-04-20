@@ -1,5 +1,5 @@
-import bot from './bot.js';
-import http from './http.js';
+import bot from './bot.config.js';
+import http from './http.config.js';
 
 export default {
   bot: bot,

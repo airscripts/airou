@@ -1,91 +1,92 @@
-import messages from './messages.js';
+import messages from './messages.error.js';
+import { Message } from '../domain/model/application.model.js';
 
 class RepositoryError extends Error {
-  constructor(public code: string) {
-    super(messages.repository[code].message);
+  constructor(public error: Message) {
+    super(error.message);
     Object.setPrototypeOf(this, new.target.prototype);
     Error.captureStackTrace(this, this.constructor);
   }
   
   toJSON() {
     return {
-      code: this.code,
-      message: this.message,
+      code: this.error.code,
+      message: this.error.message,
     };
   }
 }
 
 class ServiceError extends Error {
-  constructor(public code: string) {
-    super(messages.service[code].message);
+  constructor(public error: Message) {
+    super(error.message);
     Object.setPrototypeOf(this, new.target.prototype);
     Error.captureStackTrace(this, this.constructor);
   }
   
   toJSON() {
     return {
-      code: this.code,
-      message: this.message,
+      code: this.error.code,
+      message: this.error.message,
     };
   }
 }
 
 class NetworkError extends Error {
-  constructor(public code: string) {
-    super(messages.network[code].message);
+  constructor(public error: Message) {
+    super(error.message);
     Object.setPrototypeOf(this, new.target.prototype);
     Error.captureStackTrace(this, this.constructor);
   }
 
   toJSON() {
     return {
-      code: this.code,
-      message: this.message,
+      code: this.error.code,
+      message: this.error.message,
     };
   }
 }
 
 class ApplicationError extends Error {
-  constructor(public code: string) {
-    super(messages.application[code].message);
+  constructor(public error: Message) {
+    super(error.message);
     Object.setPrototypeOf(this, new.target.prototype);
     Error.captureStackTrace(this, this.constructor);
   }
 
   toJSON() {
     return {
-      code: this.code,
-      message: this.message,
+      code: this.error.code,
+      message: this.error.message,
     };
   }
 }
 
 class ValidationError extends Error {
-  constructor(public code: string) {
-    super(messages.validation[code].message);
+  constructor(public error: Message) {
+    super(error.message);
     Object.setPrototypeOf(this, new.target.prototype);
     Error.captureStackTrace(this, this.constructor);
   }
   
   toJSON() {
     return {
-      code: this.code,
-      message: this.message,
+      code: this.error.code,
+      message: this.error.message,
     };
   }
 }
 
 class BotError extends Error {
-  constructor(public code: string) {
-    super(messages.bot[code].message);
+  constructor(public error: Message) {
+    super(error.message);
     Object.setPrototypeOf(this, new.target.prototype);
     Error.captureStackTrace(this, this.constructor);
   }
 
   toJSON() {
     return {
-      code: this.code,
-      message: this.message,
+      code: this.error.code,
+      message: this.error.message,
     };
   }
 }

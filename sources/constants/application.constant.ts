@@ -6,13 +6,13 @@ export const APPLICATION_CONSTANTS = {
   errors: {
     repository: {
       codes: {
-        userNotFound: 'D0001',
-        databaseError: 'D0000',
-        userIsDeleted: 'D0004',
-        userIsDisabled: 'D0003',
-        userIsNotDeleted: 'D0006',
-        userAlreadyExists: 'D0002',
-        userisNotDisabled: 'D0005',
+        userNotFound: 'R0001',
+        databaseError: 'R0000',
+        userIsDeleted: 'R0004',
+        userIsDisabled: 'R0003',
+        userIsNotDeleted: 'R0006',
+        userAlreadyExists: 'R0002',
+        userisNotDisabled: 'R0005',
       }
     },
 
