@@ -22,8 +22,8 @@ export class Http {
   }
 
   public routes(): void {
-    routes.ping.init();
-    routes.telegram.init();
+    routes.ping.root.get();
+    routes.telegram.root.post();
 
     routes.users.root.get();
     routes.users.root.post();

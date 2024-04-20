@@ -1,5 +1,5 @@
 import {
-  User,
+  UserModel,
   UserRepositoryCreatePayload,
   UserRepositoryUpdatePayload,
   UserRepositoryRemovePayload,
@@ -13,18 +13,21 @@ import {
 type UsersRepositoryType = UsersRepository;
 
 interface UsersRepository {
-  retrieve(): Promise<User[]>;
-  remove(id: UserRepositoryRemovePayload): Promise<User>;
-  enable(id: UserRepositoryEnablePayload): Promise<User>;
-  disable(id: UserRepositoryDisablePayload): Promise<User>;
-  create(user: UserRepositoryCreatePayload): Promise<User>;
-  update(user: UserRepositoryUpdatePayload): Promise<User>;
-  deleteById(id: UserRepositoryDeleteByIdPayload): Promise<User>;
-  retrieveById(id: UserRepositoryRetrieveByIdPayload): Promise<User | null>;
+  retrieve(): Promise<UserModel[]>;
+  remove(id: UserRepositoryRemovePayload): Promise<UserModel>;
+  enable(id: UserRepositoryEnablePayload): Promise<UserModel>;
+  disable(id: UserRepositoryDisablePayload): Promise<UserModel>;
+  create(user: UserRepositoryCreatePayload): Promise<UserModel>;
+  update(user: UserRepositoryUpdatePayload): Promise<UserModel>;
+  deleteById(id: UserRepositoryDeleteByIdPayload): Promise<UserModel>;
+
+  retrieveById(
+    id: UserRepositoryRetrieveByIdPayload,
+  ): Promise<UserModel | null>;
 
   retrieveByEmail(
     email: UserRepositoryRetrieveByEmailPayload,
-  ): Promise<User | null>;
+  ): Promise<UserModel | null>;
 }
 
 export { UsersRepository, UsersRepositoryType };

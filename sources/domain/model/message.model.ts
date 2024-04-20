@@ -3,9 +3,9 @@ interface Message {
   message: string;
 }
 
-interface MessageMap {
+interface MessageModel {
   [key: string]: Message;
 }
 
-export { Message, MessageMap };
-export default MessageMap;
+export { Message, MessageModel };
+export default MessageModel;

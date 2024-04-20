@@ -1,5 +1,5 @@
 import {
-  User,
+  UserModel,
   UserServiceCreatePayload,
   UserServiceUpdatePayload,
   UserServiceRemovePayload,
@@ -13,18 +13,18 @@ import {
 type UsersServiceType = UsersService;
 
 interface UsersService {
-  retrieve(): Promise<User[]>;
-  remove(id: UserServiceRemovePayload): Promise<User>;
-  enable(id: UserServiceEnablePayload): Promise<User>;
-  disable(id: UserServiceDisablePayload): Promise<User>;
-  create(user: UserServiceCreatePayload): Promise<User>;
-  update(user: UserServiceUpdatePayload): Promise<User>;
-  deleteById(id: UserServiceDeleteByIdPayload): Promise<User>;
-  retrieveById(id: UserServiceRetrieveByIdPayload): Promise<User | null>;
+  retrieve(): Promise<UserModel[]>;
+  remove(id: UserServiceRemovePayload): Promise<UserModel>;
+  enable(id: UserServiceEnablePayload): Promise<UserModel>;
+  disable(id: UserServiceDisablePayload): Promise<UserModel>;
+  create(user: UserServiceCreatePayload): Promise<UserModel>;
+  update(user: UserServiceUpdatePayload): Promise<UserModel>;
+  deleteById(id: UserServiceDeleteByIdPayload): Promise<UserModel>;
+  retrieveById(id: UserServiceRetrieveByIdPayload): Promise<UserModel | null>;
 
   retrieveByEmail(
     email: UserServiceRetrieveByEmailPayload,
-  ): Promise<User | null>;
+  ): Promise<UserModel | null>;
 }
 
 export { UsersService, UsersServiceType };

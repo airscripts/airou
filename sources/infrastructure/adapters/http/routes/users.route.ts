@@ -13,7 +13,7 @@ import {
   UserHttpDelete,
 } from '../../../../domain/model/user.model.js';
 
-class Users {
+class UsersRoute {
   private service: UsersService = services.locator.getService(
     CONSTANTS.application.services.users,
   );
@@ -63,7 +63,7 @@ class Users {
   }
 }
 
-class User {
+class UserRoute {
   private service: UsersService = services.locator.getService(
     CONSTANTS.application.services.users,
   );
@@ -127,8 +127,8 @@ class User {
   }
 }
 
-const id = new User();
-const root = new Users();
+const id = new UserRoute();
+const root = new UsersRoute();
 
 export default {
   id: id,

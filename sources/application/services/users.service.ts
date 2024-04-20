@@ -5,7 +5,7 @@ import repositories from '../../infrastructure/adapters/core/repositories/index.
 import { UsersRepository } from '../../infrastructure/adapters/core/repositories/users.repository.js';
 
 import {
-  User,
+  UserModel,
   UserServiceCreatePayload,
   UserServiceUpdatePayload,
   UserServiceRemovePayload,
@@ -25,7 +25,7 @@ export class UsersService implements UsersServiceType {
     this.repository = repository;
   }
 
-  public async retrieve(): Promise<User[]> {
+  public async retrieve(): Promise<UserModel[]> {
     try {
       return await this.repository.retrieve();
     } catch (error) {
@@ -34,7 +34,7 @@ export class UsersService implements UsersServiceType {
     }
   }
 
-  public async create(payload: UserServiceCreatePayload): Promise<User> {
+  public async create(payload: UserServiceCreatePayload): Promise<UserModel> {
     try {
       if (!payload.name)
         throw new errors.ServiceError(messages.service.MISSING_NAME);
@@ -46,7 +46,7 @@ export class UsersService implements UsersServiceType {
     }
   }
 
-  public async update(payload: UserServiceUpdatePayload): Promise<User> {
+  public async update(payload: UserServiceUpdatePayload): Promise<UserModel> {
     try {
       return await this.repository.update(payload);
     } catch (error) {
@@ -55,7 +55,7 @@ export class UsersService implements UsersServiceType {
     }
   }
 
-  public async remove(id: UserServiceRemovePayload): Promise<User> {
+  public async remove(id: UserServiceRemovePayload): Promise<UserModel> {
     try {
       return await this.repository.remove(id);
     } catch (error) {
@@ -66,7 +66,7 @@ export class UsersService implements UsersServiceType {
 
   public async retrieveById(
     id: UserServiceRetrieveByIdPayload,
-  ): Promise<User | null> {
+  ): Promise<UserModel | null> {
     try {
       return await this.repository.retrieveById(id);
     } catch (error) {
@@ -77,7 +77,7 @@ export class UsersService implements UsersServiceType {
 
   public async retrieveByEmail(
     email: UserServiceRetrieveByEmailPayload,
-  ): Promise<User | null> {
+  ): Promise<UserModel | null> {
     try {
       return await this.repository.retrieveByEmail(email);
     } catch (error) {
@@ -86,7 +86,7 @@ export class UsersService implements UsersServiceType {
     }
   }
 
-  public async disable(id: UserServiceDisablePayload): Promise<User> {
+  public async disable(id: UserServiceDisablePayload): Promise<UserModel> {
     try {
       return await this.repository.disable(id);
     } catch (error) {
@@ -95,7 +95,7 @@ export class UsersService implements UsersServiceType {
     }
   }
 
-  public async enable(id: UserServiceEnablePayload): Promise<User> {
+  public async enable(id: UserServiceEnablePayload): Promise<UserModel> {
     try {
       return await this.repository.enable(id);
     } catch (error) {
@@ -104,7 +104,9 @@ export class UsersService implements UsersServiceType {
     }
   }
 
-  public async deleteById(id: UserServiceDeleteByIdPayload): Promise<User> {
+  public async deleteById(
+    id: UserServiceDeleteByIdPayload,
+  ): Promise<UserModel> {
     try {
       return await this.repository.deleteById(id);
     } catch (error) {

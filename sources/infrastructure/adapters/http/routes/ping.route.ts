@@ -2,12 +2,16 @@ import core from '../../core/index.js';
 import CONSTANTS from '../../../../constants/index.js';
 import { instance as http } from '../../../config/http.config.js';
 
-function init(): void {
-  http.get(CONSTANTS.http.routes.ping, async () => {
-    return core.helpers.ping.send();
-  });
+class PingRoute {
+  public get(): void {
+    http.get(CONSTANTS.http.routes.ping, async () => {
+      return core.helpers.ping.send();
+    });
+  }
 }
 
+const root = new PingRoute();
+
 export default {
-  init: init,
+  root: root,
 };

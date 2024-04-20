@@ -1,19 +1,24 @@
-import { object as bot } from './infrastructure/config/bot.config.js';
-import { object as http } from './infrastructure/config/http.config.js';
+import { object as bot, Bot } from './infrastructure/config/bot.config.js';
+import { object as http, Http } from './infrastructure/config/http.config.js';
 
-function setupBot() {
-  bot.session();
-  bot.commands();
+class App {
+  private bot: Bot = bot;
+  private http: Http = http;
+
+  constructor() {
+    this.setBot();
+    this.setHttp();
+  }
+
+  private setBot(): void {
+    this.bot.session();
+    this.bot.commands();
+  }
+
+  private setHttp(): void {
+    this.http.routes();
+    this.http.start();
+  }
 }
 
-function setupHttp() {
-  http.routes();
-  http.start();
-}
-
-function app() {
-  setupBot();
-  setupHttp();
-}
-
-app();
+new App();

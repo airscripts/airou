@@ -41,7 +41,7 @@ export class Bot {
   }
 
   public commands(): void {
-    commands.ping.init();
+    commands.ping.root.command();
   }
 
   public session(): void {

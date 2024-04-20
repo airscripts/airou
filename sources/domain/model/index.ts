@@ -1,4 +1,4 @@
-import User from './user.model.js';
-import MessageMap from './message.model.js';
+import UserModel from './user.model.js';
+import MessageModel from './message.model.js';
 
-export { User, MessageMap };
+export { UserModel, MessageModel };
