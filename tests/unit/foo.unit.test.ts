@@ -3,8 +3,8 @@ import { deepStrictEqual } from 'node:assert';
 
 import CONSTANTS from '../constants/index.js';
 
-describe(CONSTANTS.tests.unit.describes.foo, () => {
-  it(CONSTANTS.tests.unit.it.foo, () => {
+describe(CONSTANTS.test.unit.describe.foo, () => {
+  it(CONSTANTS.test.unit.it.foo, () => {
     deepStrictEqual(true, true);
   });
 });

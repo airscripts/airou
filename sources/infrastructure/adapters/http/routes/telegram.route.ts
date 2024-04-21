@@ -9,7 +9,7 @@ import { instance as http } from '../../../configs/http.config.js';
 class TelegramRoute {
   public post(): void {
     http.post(
-      CONSTANTS.http.routes.telegram,
+      CONSTANTS.infrastructure.http.routes.telegram,
       async (request: FastifyRequest, reply: FastifyReply) => {
         const webhook = await bot.webhook();
         type WebhookRequestBody = { body?: Update };
@@ -25,8 +25,8 @@ class TelegramRoute {
   }
 }
 
-const root = new TelegramRoute();
+const instance = new TelegramRoute();
 
 export default {
-  root: root,
+  instance: instance,
 };

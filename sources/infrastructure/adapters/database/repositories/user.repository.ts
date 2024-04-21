@@ -1,7 +1,7 @@
 import messages from '../../../../errors/messages.error.js';
 import errors from '../../../../errors/exceptions.error.js';
 import { instance as database } from '../../../configs/database.config.js';
-import { UsersRepositoryType } from '../../../../domain/ports/users.repository.port.js';
+import { UserRepositoryPort } from '../../../../domain/ports/repositories/user.repository.port.js';
 
 import {
   UserModel,
@@ -13,10 +13,10 @@ import {
   UserRepositoryDeleteByIdPayload,
   UserRepositoryRetrieveByIdPayload,
   UserRepositoryRetrieveByEmailPayload,
-} from '../../../../domain/model/user.model.js';
+} from '../../../../domain/models/user.model.js';
 
-export class UsersRepository implements UsersRepositoryType {
-  public async retrieve(): Promise<UserModel[]> {
+export class UserRepository implements UserRepositoryPort {
+  public async find(): Promise<UserModel[]> {
     try {
       return await database.user.findMany();
     } catch (error) {
@@ -56,7 +56,7 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async retrieveById(
+  public async findById(
     id: UserRepositoryRetrieveByIdPayload,
   ): Promise<UserModel | null> {
     try {
@@ -68,7 +68,7 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async retrieveByEmail(
+  public async findByEmail(
     email: UserRepositoryRetrieveByEmailPayload,
   ): Promise<UserModel | null> {
     try {
@@ -83,7 +83,7 @@ export class UsersRepository implements UsersRepositoryType {
   public async disable(id: UserRepositoryDisablePayload): Promise<UserModel> {
     try {
       const conditions = { id: id };
-      const payload = { isDisabled: true };
+      const payload = { isDisabled: true, disabledAt: new Date() };
       return await database.user.update({ where: conditions, data: payload });
     } catch (error) {
       console.error(error);
@@ -94,7 +94,7 @@ export class UsersRepository implements UsersRepositoryType {
   public async enable(id: UserRepositoryEnablePayload): Promise<UserModel> {
     try {
       const conditions = { id: id };
-      const payload = { isDisabled: false };
+      const payload = { isDisabled: false, disabledAt: null };
       return await database.user.update({ where: conditions, data: payload });
     } catch (error) {
       console.error(error);
@@ -102,12 +102,12 @@ export class UsersRepository implements UsersRepositoryType {
     }
   }
 
-  public async deleteById(
+  public async removeById(
     id: UserRepositoryDeleteByIdPayload,
   ): Promise<UserModel> {
     try {
       const conditions = { id: id };
-      const payload = { isDeleted: true };
+      const payload = { isDeleted: true, deletedAt: new Date() };
       return await database.user.update({ where: conditions, data: payload });
     } catch (error) {
       console.error(error);
@@ -116,9 +116,9 @@ export class UsersRepository implements UsersRepositoryType {
   }
 }
 
-export const usersRepository = new UsersRepository();
+export const instance = new UserRepository();
 
 export default {
-  instance: usersRepository,
-  UsersRepository: UsersRepository,
+  instance: instance,
+  UserRepository: UserRepository,
 };

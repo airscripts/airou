@@ -1,62 +1,62 @@
 import CONSTANTS from '../constants/index.js';
 import translations from '../translations/index.js';
-import MessageModel from '../domain/model/message.model.js';
+import MessageModel from '../domain/models/message.model.js';
 
 const repository: MessageModel = {
   DATABASE_ERROR: {
-    code: CONSTANTS.application.errors.repository.codes.databaseError,
+    code: CONSTANTS.error.repository.code.databaseError,
     message: translations.en.errors.repository.messages.databaseError,
   },
 
   REPOSITORY_NOT_FOUND: {
-    code: CONSTANTS.application.errors.repository.codes.repositoryNotFound,
+    code: CONSTANTS.error.repository.code.repositoryNotFound,
     message: translations.en.errors.repository.messages.repositoryNotFound,
   },
 
   USER_NOT_FOUND: {
-    code: CONSTANTS.application.errors.repository.codes.userNotFound,
+    code: CONSTANTS.error.repository.code.userNotFound,
     message: translations.en.errors.repository.messages.userNotFound,
   },
 
   USER_ALREADY_EXISTS: {
-    code: CONSTANTS.application.errors.repository.codes.userAlreadyExists,
+    code: CONSTANTS.error.repository.code.userAlreadyExists,
     message: translations.en.errors.repository.messages.userAlreadyExists,
   },
 
   USER_IS_DISABLED: {
-    code: CONSTANTS.application.errors.repository.codes.userIsDisabled,
+    code: CONSTANTS.error.repository.code.userIsDisabled,
     message: translations.en.errors.repository.messages.userIsDisabled,
   },
 
   USER_IS_DELETED: {
-    code: CONSTANTS.application.errors.repository.codes.userIsDeleted,
+    code: CONSTANTS.error.repository.code.userIsDeleted,
     message: translations.en.errors.repository.messages.userIsDeleted,
   },
 
   USER_IS_NOT_DISABLED: {
-    code: CONSTANTS.application.errors.repository.codes.userisNotDisabled,
+    code: CONSTANTS.error.repository.code.userisNotDisabled,
     message: translations.en.errors.repository.messages.userIsNotDisabled,
   },
 
   USER_IS_NOT_DELETED: {
-    code: CONSTANTS.application.errors.repository.codes.userIsNotDeleted,
+    code: CONSTANTS.error.repository.code.userIsNotDeleted,
     message: translations.en.errors.repository.messages.userIsNotDeleted,
   },
 };
 
 const service: MessageModel = {
   SERVICE_ERROR: {
-    code: CONSTANTS.application.errors.service.codes.serviceError,
+    code: CONSTANTS.error.service.code.serviceError,
     message: translations.en.errors.service.messages.serviceError,
   },
 
   SERVICE_NOT_FOUND: {
-    code: CONSTANTS.application.errors.service.codes.serviceNotFound,
+    code: CONSTANTS.error.service.code.serviceNotFound,
     message: translations.en.errors.service.messages.serviceNotFound,
   },
 
   MISSING_USER_NAME: {
-    code: CONSTANTS.application.errors.service.codes.missingUserName,
+    code: CONSTANTS.error.service.code.missingUserName,
     message: translations.en.errors.service.messages.missingUserName,
   },
 };

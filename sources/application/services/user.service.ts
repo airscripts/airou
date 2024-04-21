@@ -1,8 +1,11 @@
 import messages from '../../errors/messages.error.js';
 import errors from '../../errors/exceptions.error.js';
-import { UsersServiceType } from '../../domain/ports/users.service.port.js';
-import repositories from '../../infrastructure/adapters/core/repositories/index.js';
-import { UsersRepository } from '../../infrastructure/adapters/core/repositories/users.repository.js';
+import repositories from '../../infrastructure/adapters/database/repositories/index.js';
+
+import {
+  UserServicePort,
+  UserRepositoryPort,
+} from '../../domain/ports/index.js';
 
 import {
   UserModel,
@@ -14,20 +17,20 @@ import {
   UserServiceDeleteByIdPayload,
   UserServiceRetrieveByIdPayload,
   UserServiceRetrieveByEmailPayload,
-} from '../../domain/model/user.model.js';
+} from '../../domain/models/user.model.js';
 
-export class UsersService implements UsersServiceType {
-  private repository: UsersRepository;
+export class UserService implements UserServicePort {
+  private repository: UserRepositoryPort;
 
   constructor(
-    repository: UsersRepository = repositories.locator.getRepository('users'),
+    repository: UserRepositoryPort = repositories.locator.getRepository('user'),
   ) {
     this.repository = repository;
   }
 
-  public async retrieve(): Promise<UserModel[]> {
+  public async find(): Promise<UserModel[]> {
     try {
-      return await this.repository.retrieve();
+      return await this.repository.find();
     } catch (error) {
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
@@ -64,22 +67,22 @@ export class UsersService implements UsersServiceType {
     }
   }
 
-  public async retrieveById(
+  public async findById(
     id: UserServiceRetrieveByIdPayload,
   ): Promise<UserModel | null> {
     try {
-      return await this.repository.retrieveById(id);
+      return await this.repository.findById(id);
     } catch (error) {
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
     }
   }
 
-  public async retrieveByEmail(
+  public async findByEmail(
     email: UserServiceRetrieveByEmailPayload,
   ): Promise<UserModel | null> {
     try {
-      return await this.repository.retrieveByEmail(email);
+      return await this.repository.findByEmail(email);
     } catch (error) {
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
@@ -104,11 +107,11 @@ export class UsersService implements UsersServiceType {
     }
   }
 
-  public async deleteById(
+  public async removeById(
     id: UserServiceDeleteByIdPayload,
   ): Promise<UserModel> {
     try {
-      return await this.repository.deleteById(id);
+      return await this.repository.removeById(id);
     } catch (error) {
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);
@@ -116,9 +119,9 @@ export class UsersService implements UsersServiceType {
   }
 }
 
-export const service = new UsersService();
+export const instance = new UserService();
 
 export default {
-  instance: service,
-  UsersService: UsersService,
+  instance: instance,
+  UserService: UserService,
 };

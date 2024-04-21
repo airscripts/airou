@@ -1,7 +1,7 @@
-import USERS_CONSTANT from "./users.constant.js";
-import TESTS_CONSTANTS from "./tests.constant.js";
+import user from "./user.constant.js";
+import test from "./test.constant.js";
 
 export default {
-  users: USERS_CONSTANT,
-  tests: TESTS_CONSTANTS,
+  user: user,
+  test: test,
 };

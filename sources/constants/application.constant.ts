@@ -1,43 +1,27 @@
-export const APPLICATION_CONSTANTS = {
-  generic: {
-    ping: 'pong',
-  },
+const service = {
+  user: 'user',
+};
 
-  services: {
-    users: 'users',
-  },
-
-  repositories: {
-    users: 'users',
-  },
-
-  errors: {
-    repository: {
-      codes: {
-        userNotFound: 'R0001',
-        databaseError: 'R0000',
-        userIsDeleted: 'R0004',
-        userIsDisabled: 'R0003',
-        userIsNotDeleted: 'R0006',
-        userAlreadyExists: 'R0002',
-        userisNotDisabled: 'R0005',
-        repositoryNotFound: 'R0007',
-      },
+const factory = {
+  user: {
+    action: {
+      patch: 'patch',
+      enable: 'enable',
+      delete: 'delete',
+      disable: 'disable',
     },
 
-    service: {
-      codes: {
-        serviceError: 'S0000',
-        missingUserName: 'S0001',
-        serviceNotFound: 'S0002',
-      },
-    },
-
-    bot: {},
-    network: {},
-    validation: {},
-    application: {},
+    find: {
+      email: 'email',
+      standard: 'standard',
+    }
   },
 };
 
-export default APPLICATION_CONSTANTS;
+const application = {
+  service: service,
+  factory: factory,
+};
+
+export { service, factory, application };
+export default application;

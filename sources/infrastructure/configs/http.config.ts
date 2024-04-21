@@ -14,7 +14,7 @@ export class Http {
     this.instance = fastify();
     this.port = configs.http.port;
     this.host = configs.http.host;
-    this.message = CONSTANTS.http.server.message;
+    this.message = CONSTANTS.infrastructure.http.server.message;
   }
 
   public get(): FastifyInstance {
@@ -22,15 +22,13 @@ export class Http {
   }
 
   public routes(): void {
-    routes.ping.root.get();
-    routes.telegram.root.post();
-
-    routes.users.root.get();
-    routes.users.root.post();
-
-    routes.users.id.get();
-    routes.users.id.patch();
-    routes.users.id.delete();
+    routes.ping.get();
+    routes.telegram.post();
+    routes.users.get();
+    routes.users.post();
+    routes.user.get();
+    routes.user.patch();
+    routes.user.delete();
   }
 
   public start(): void {

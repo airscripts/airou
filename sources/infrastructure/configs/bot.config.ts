@@ -20,12 +20,12 @@ export class Bot {
       telegram: { webhookReply: false },
     });
 
-    process.once(CONSTANTS.bot.signals.interrupt, () =>
-      this.bot.stop(CONSTANTS.bot.signals.interrupt),
+    process.once(CONSTANTS.infrastructure.bot.signals.interrupt, () =>
+      this.bot.stop(CONSTANTS.infrastructure.bot.signals.interrupt),
     );
 
-    process.once(CONSTANTS.bot.signals.terminate, () =>
-      this.bot.stop(CONSTANTS.bot.signals.terminate),
+    process.once(CONSTANTS.infrastructure.bot.signals.terminate, () =>
+      this.bot.stop(CONSTANTS.infrastructure.bot.signals.terminate),
     );
   }
 

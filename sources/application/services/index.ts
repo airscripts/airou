@@ -1,12 +1,12 @@
-import users from './users.service.js';
-import locator from './locator.service.js';
+import user from './user.service.js';
+import core from '../core/index.js';
 import CONSTANTS from '../../constants/index.js';
 
-locator.instance.registerService(
-  CONSTANTS.application.services.users,
-  users.instance,
+core.locator.instance.registerService(
+  CONSTANTS.application.service.user,
+  user.instance,
 );
 
 export default {
-  locator: locator.instance,
+  locator: core.locator.instance,
 };

@@ -3,8 +3,8 @@ import errors from '../../../../errors/exceptions.error.js';
 
 import {
   Repository,
-  RepositoryLocatorType,
-} from '../../../../domain/ports/locator.repository.port.js';
+  RepositoryLocatorPort,
+} from '../../../../domain/ports/core/repository.locator.core.port.js';
 
 class RepositoryLocator<T> {
   private repositories: Repository<T> = {};
@@ -25,9 +25,9 @@ class RepositoryLocator<T> {
   }
 }
 
-export const locator = new RepositoryLocator<RepositoryLocatorType>();
+export const instance = new RepositoryLocator<RepositoryLocatorPort>();
 
 export default {
-  instance: locator,
+  instance: instance,
   RepositoryLocator: RepositoryLocator,
 };

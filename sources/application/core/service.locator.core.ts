@@ -3,8 +3,8 @@ import errors from '../../errors/exceptions.error.js';
 
 import {
   Service,
-  ServiceLocatorType,
-} from '../../domain/ports/locator.service.port.js';
+  ServiceLocatorPort,
+} from '../../domain/ports/core/service.locator.core.port.js';
 
 class ServiceLocator<T> {
   private services: Service<T> = {};
@@ -23,7 +23,7 @@ class ServiceLocator<T> {
   }
 }
 
-export const locator = new ServiceLocator<ServiceLocatorType>();
+export const locator = new ServiceLocator<ServiceLocatorPort>();
 
 export default {
   instance: locator,

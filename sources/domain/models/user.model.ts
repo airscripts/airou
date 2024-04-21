@@ -1,6 +1,12 @@
 type id = 'id';
 type name = 'name';
 type email = 'email';
+type patch = 'patch'; 
+type femail = 'email';
+type enable = 'enable';
+type remove = 'remove';
+type disable = 'disable';
+type standard = 'standard';
 
 type UserServiceRemovePayload = UserModel[id];
 type UserServiceEnablePayload = UserModel[id];
@@ -38,6 +44,7 @@ interface UserRepositoryUpdatePayload {
 
 interface UsersHttpGet {
   Querystring: {
+    find?: standard | femail;
     email?: Exclude<UserModel[email], null>;
   };
 }
@@ -59,6 +66,10 @@ interface UserHttpPatch {
   Body: {
     id: UserModel[id];
     name?: UserModel[name];
+  };
+
+  Querystring: {
+    action?: enable | disable | remove | patch;
   };
 
   Params: {

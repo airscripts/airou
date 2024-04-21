@@ -1,7 +1,7 @@
 import CONSTANTS from "../../../../constants/index.js";
 
 function send(): string {
-  return CONSTANTS.application.generic.ping;
+  return CONSTANTS.common.ping;
 }
 
 export default {

@@ -3,134 +3,56 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import CONSTANTS from '../../../../constants/index.js';
 import services from '../../../../application/services/index.js';
 import { instance as http } from '../../../configs/http.config.js';
-import UsersService from '../../../../domain/ports/users.service.port.js';
+import UserServicePort from '../../../../domain/ports/services/user.service.port.js';
+import { UserFindFactory } from '../../../../application/factories/user.find.factory.js';
 
 import {
-  UserHttpGet,
   UsersHttpGet,
   UsersHttpPost,
-  UserHttpPatch,
-  UserHttpDelete,
-} from '../../../../domain/model/user.model.js';
+} from '../../../../domain/models/user.model.js';
 
 class UsersRoute {
-  private service: UsersService = services.locator.getService(
-    CONSTANTS.application.services.users,
+  private service: UserServicePort = services.locator.getService(
+    CONSTANTS.application.service.user,
   );
-
-  private async retrieve(payload: { email?: string } = {}) {
-    const { email } = payload;
-    if (email) return await this.service.retrieveByEmail(email);
-    else return await this.service.retrieve();
-  }
 
   public get(): void {
     http.get(
-      CONSTANTS.http.routes.users,
+      CONSTANTS.infrastructure.http.routes.users,
       async (request: FastifyRequest<UsersHttpGet>, reply: FastifyReply) => {
-        let data;
-
         try {
-          const payload = { email: request.query.email };
-          data = await this.retrieve(payload);
+          const { email, find } = request.query;
+          const factory = new UserFindFactory(this.service);
+          const data = await factory.find(find).execute(email);
+          return reply.code(200).send({ data: data });
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
         }
-
-        return reply.code(200).send({ data: data });
       },
     );
   }
 
   public post(): void {
     http.post(
-      CONSTANTS.http.routes.users,
+      CONSTANTS.infrastructure.http.routes.users,
       async (request: FastifyRequest<UsersHttpPost>, reply: FastifyReply) => {
-        let data;
-
         try {
           const { name, email } = request.body;
-          data = await this.service.create({ name: name, email: email });
+          const data = await this.service.create({ name: name, email: email });
+          return reply.code(201).send({ data: data });
         } catch (error) {
           console.error(error);
           return reply.code(500).send({ error: error });
         }
-
-        return reply.code(201).send({ data: data });
       },
     );
   }
 }
 
-class UserRoute {
-  private service: UsersService = services.locator.getService(
-    CONSTANTS.application.services.users,
-  );
-
-  public get(): void {
-    http.get(
-      CONSTANTS.http.routes.user,
-      async (request: FastifyRequest<UserHttpGet>, reply: FastifyReply) => {
-        let data;
-
-        try {
-          const { id } = request.params;
-          data = await this.service.retrieveById(id);
-        } catch (error) {
-          console.error(error);
-          return reply.code(500).send({ error: error });
-        }
-
-        return reply.code(200).send({ data: data });
-      },
-    );
-  }
-
-  public patch(): void {
-    http.patch(
-      CONSTANTS.http.routes.user,
-      async (request: FastifyRequest<UserHttpPatch>, reply: FastifyReply) => {
-        let data;
-
-        try {
-          const { id } = request.params;
-          const { name } = request.body;
-          data = await this.service.update({ id: id, name: name });
-        } catch (error) {
-          console.error(error);
-          return reply.code(500).send({ error: error });
-        }
-
-        return reply.code(200).send({ data: data });
-      },
-    );
-  }
-
-  public delete(): void {
-    http.delete(
-      CONSTANTS.http.routes.user,
-      async (request: FastifyRequest<UserHttpDelete>, reply: FastifyReply) => {
-        let data;
-
-        try {
-          const { id } = request.params;
-          data = await this.service.remove(id);
-        } catch (error) {
-          console.error(error);
-          return reply.code(500).send({ error: error });
-        }
-
-        return reply.code(200).send({ data: data });
-      },
-    );
-  }
-}
-
-const id = new UserRoute();
-const root = new UsersRoute();
+const instance = new UsersRoute();
 
 export default {
-  id: id,
-  root: root,
+  instance: instance,
+  UsersRoute: UsersRoute,
 };
