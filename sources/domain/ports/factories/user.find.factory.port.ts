@@ -1,13 +1,13 @@
 import { UserModel } from '../../models/user.model.js';
 
-type UserEmailFind = 'email';
-type UserStandardFind = 'standard';
+type UserFindEmail = 'email';
+type UserFindStandard = 'standard';
 
-type UserFindType = undefined | UserEmailFind | UserStandardFind;
+type UserFindType = undefined | UserFindEmail | UserFindStandard;
 
 interface UserFindPort {
   execute(email?: string): Promise<UserModel | UserModel[] | null>;
 }
 
-export { UserFindPort, UserFindType, UserEmailFind, UserStandardFind };
+export { UserFindPort, UserFindType, UserFindEmail, UserFindStandard };
 export default UserFindPort;

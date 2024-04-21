@@ -9,7 +9,7 @@ import { UserFindFactory } from '../../../../application/factories/user.find.fac
 import {
   UsersHttpGet,
   UsersHttpPost,
-} from '../../../../domain/models/user.model.js';
+} from '../dtos/users.dto.js';
 
 class UsersRoute {
   private service: UserServicePort = services.locator.getService(

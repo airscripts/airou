@@ -1,14 +1,30 @@
 import {
   UserModel,
-  UserServiceCreatePayload,
-  UserServiceUpdatePayload,
-  UserServiceRemovePayload,
-  UserServiceEnablePayload,
-  UserServiceDisablePayload,
-  UserServiceDeleteByIdPayload,
-  UserServiceRetrieveByIdPayload,
-  UserServiceRetrieveByEmailPayload,
+  UserModelId,
+  UserModelName,
+  UserModelEmail,
 } from '../../models/user.model.js';
+
+type UserServiceRemovePayload = UserModel[UserModelId];
+type UserServiceEnablePayload = UserModel[UserModelId];
+type UserServiceDisablePayload = UserModel[UserModelId];
+type UserServiceDeleteByIdPayload = UserModel[UserModelId];
+type UserServiceRetrieveByIdPayload = UserModel[UserModelId];
+
+type UserServiceRetrieveByEmailPayload = Exclude<
+  UserModel[UserModelEmail],
+  null
+>;
+
+interface UserServiceCreatePayload {
+  name: UserModel[UserModelName];
+  email?: UserModel[UserModelEmail];
+}
+
+interface UserServiceUpdatePayload {
+  id: UserModel[UserModelId];
+  name?: UserModel[UserModelName];
+}
 
 interface UserServicePort {
   find(): Promise<UserModel[]>;
@@ -26,4 +42,16 @@ interface UserServicePort {
 }
 
 export { UserServicePort };
+
+export {
+  UserServiceCreatePayload,
+  UserServiceUpdatePayload,
+  UserServiceRemovePayload,
+  UserServiceEnablePayload,
+  UserServiceDisablePayload,
+  UserServiceDeleteByIdPayload,
+  UserServiceRetrieveByIdPayload,
+  UserServiceRetrieveByEmailPayload,
+};
+
 export default UserServicePort;

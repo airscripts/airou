@@ -10,7 +10,7 @@ import {
   UserHttpGet,
   UserHttpPatch,
   UserHttpDelete,
-} from '../../../../domain/models/user.model.js';
+} from '../dtos/user.dto.js';
 
 class UserRoute {
   private service: UserServicePort = services.locator.getService(

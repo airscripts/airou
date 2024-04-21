@@ -1,16 +1,16 @@
 import { UserModel } from '../../models/user.model.js';
 
-type UserPatchAction = 'patch';
-type UserRemoveAction = 'remove';
-type UserEnableAction = 'enable';
-type UserDisableAction = 'disable';
+type UserActionPatch = 'patch';
+type userActionRemove = 'remove';
+type UserActionEnable = 'enable';
+type UserActionDisable = 'disable';
 
 type UserActionType =
   | undefined
-  | UserPatchAction
-  | UserRemoveAction
-  | UserEnableAction
-  | UserDisableAction;
+  | UserActionPatch
+  | userActionRemove
+  | UserActionEnable
+  | UserActionDisable;
 
 interface UserActionPort {
   execute(id: string, name?: string): Promise<UserModel>;
@@ -19,10 +19,10 @@ interface UserActionPort {
 export {
   UserActionPort,
   UserActionType,
-  UserPatchAction,
-  UserEnableAction,
-  UserRemoveAction,
-  UserDisableAction,
+  UserActionPatch,
+  UserActionEnable,
+  userActionRemove,
+  UserActionDisable,
 };
 
 export default UserActionPort;

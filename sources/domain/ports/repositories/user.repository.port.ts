@@ -1,14 +1,30 @@
 import {
   UserModel,
-  UserRepositoryCreatePayload,
-  UserRepositoryUpdatePayload,
-  UserRepositoryRemovePayload,
-  UserRepositoryEnablePayload,
-  UserRepositoryDisablePayload,
-  UserRepositoryDeleteByIdPayload,
-  UserRepositoryRetrieveByIdPayload,
-  UserRepositoryRetrieveByEmailPayload,
+  UserModelId,
+  UserModelName,
+  UserModelEmail,
 } from '../../models/user.model.js';
+
+type UserRepositoryRemovePayload = UserModel[UserModelId];
+type UserRepositoryEnablePayload = UserModel[UserModelId];
+type UserRepositoryDisablePayload = UserModel[UserModelId];
+type UserRepositoryDeleteByIdPayload = UserModel[UserModelId];
+type UserRepositoryRetrieveByIdPayload = UserModel[UserModelId];
+
+type UserRepositoryRetrieveByEmailPayload = Exclude<
+  UserModel[UserModelEmail],
+  null
+>;
+
+interface UserRepositoryCreatePayload {
+  name: UserModel[UserModelName];
+  email?: UserModel[UserModelEmail];
+}
+
+interface UserRepositoryUpdatePayload {
+  id: UserModel[UserModelId];
+  name?: UserModel[UserModelName];
+}
 
 interface UserRepositoryPort {
   find(): Promise<UserModel[]>;
@@ -19,9 +35,7 @@ interface UserRepositoryPort {
   update(user: UserRepositoryUpdatePayload): Promise<UserModel>;
   removeById(id: UserRepositoryDeleteByIdPayload): Promise<UserModel>;
 
-  findById(
-    id: UserRepositoryRetrieveByIdPayload,
-  ): Promise<UserModel | null>;
+  findById(id: UserRepositoryRetrieveByIdPayload): Promise<UserModel | null>;
 
   findByEmail(
     email: UserRepositoryRetrieveByEmailPayload,
@@ -29,4 +43,16 @@ interface UserRepositoryPort {
 }
 
 export { UserRepositoryPort };
+
+export {
+  UserRepositoryCreatePayload,
+  UserRepositoryUpdatePayload,
+  UserRepositoryRemovePayload,
+  UserRepositoryEnablePayload,
+  UserRepositoryDisablePayload,
+  UserRepositoryDeleteByIdPayload,
+  UserRepositoryRetrieveByIdPayload,
+  UserRepositoryRetrieveByEmailPayload,
+};
+
 export default UserRepositoryPort;

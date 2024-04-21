@@ -1,10 +1,10 @@
 import messages from '../../../../errors/messages.error.js';
 import errors from '../../../../errors/exceptions.error.js';
+import { UserModel } from '../../../../domain/models/user.model.js';
 import { instance as database } from '../../../configs/database.config.js';
-import { UserRepositoryPort } from '../../../../domain/ports/repositories/user.repository.port.js';
 
 import {
-  UserModel,
+  UserRepositoryPort,
   UserRepositoryCreatePayload,
   UserRepositoryUpdatePayload,
   UserRepositoryRemovePayload,
@@ -13,7 +13,7 @@ import {
   UserRepositoryDeleteByIdPayload,
   UserRepositoryRetrieveByIdPayload,
   UserRepositoryRetrieveByEmailPayload,
-} from '../../../../domain/models/user.model.js';
+} from '../../../../domain/ports/repositories/user.repository.port.js';
 
 export class UserRepository implements UserRepositoryPort {
   public async find(): Promise<UserModel[]> {

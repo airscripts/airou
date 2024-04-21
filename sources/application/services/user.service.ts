@@ -1,5 +1,6 @@
 import messages from '../../errors/messages.error.js';
 import errors from '../../errors/exceptions.error.js';
+import { UserModel } from '../../domain/models/user.model.js';
 import repositories from '../../infrastructure/adapters/database/repositories/index.js';
 
 import {
@@ -8,7 +9,6 @@ import {
 } from '../../domain/ports/index.js';
 
 import {
-  UserModel,
   UserServiceCreatePayload,
   UserServiceUpdatePayload,
   UserServiceRemovePayload,
@@ -17,7 +17,7 @@ import {
   UserServiceDeleteByIdPayload,
   UserServiceRetrieveByIdPayload,
   UserServiceRetrieveByEmailPayload,
-} from '../../domain/models/user.model.js';
+} from '../../domain/ports/services/user.service.port.js';
 
 export class UserService implements UserServicePort {
   private repository: UserRepositoryPort;
