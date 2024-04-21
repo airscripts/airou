@@ -3,8 +3,8 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { Update } from 'telegraf/typings/core/types/typegram';
 
 import CONSTANTS from '../../../../constants/index.js';
-import { object as bot } from '../../../config/bot.config.js';
-import { instance as http } from '../../../config/http.config.js';
+import { object as bot } from '../../../configs/bot.config.js';
+import { instance as http } from '../../../configs/http.config.js';
 
 class TelegramRoute {
   public post(): void {

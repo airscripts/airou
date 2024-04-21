@@ -1,6 +1,6 @@
 import messages from '../../../../errors/messages.error.js';
 import errors from '../../../../errors/exceptions.error.js';
-import { instance as database } from '../../../config/database.config.js';
+import { instance as database } from '../../../configs/database.config.js';
 import { UsersRepositoryType } from '../../../../domain/ports/users.repository.port.js';
 
 import {

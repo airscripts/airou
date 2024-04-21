@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 
 import CONSTANTS from '../../../../constants/index.js';
 import services from '../../../../application/services/index.js';
-import { instance as http } from '../../../config/http.config.js';
+import { instance as http } from '../../../configs/http.config.js';
 import UsersService from '../../../../domain/ports/users.service.port.js';
 
 import {

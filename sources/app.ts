@@ -1,5 +1,5 @@
-import { object as bot, Bot } from './infrastructure/config/bot.config.js';
-import { object as http, Http } from './infrastructure/config/http.config.js';
+import { object as bot, Bot } from './infrastructure/configs/bot.config.js';
+import { object as http, Http } from './infrastructure/configs/http.config.js';
 
 class App {
   private bot: Bot = bot;

@@ -1,6 +1,6 @@
 import core from '../../core/index.js';
 import CONSTANTS from '../../../../constants/index.js';
-import { instance as http } from '../../../config/http.config.js';
+import { instance as http } from '../../../configs/http.config.js';
 
 class PingRoute {
   public get(): void {
