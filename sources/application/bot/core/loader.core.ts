@@ -19,13 +19,21 @@ export class Bot {
     this.bot = this.setBot();
     this.webhook = this.setWebhook();
 
-    process.once(CONSTANTS.signals.interrupt, () =>
-      this.bot.stop(CONSTANTS.signals.interrupt),
-    );
+    process.once(CONSTANTS.signals.interrupt, () => {
+      try {
+        this.bot.stop(CONSTANTS.signals.interrupt);
+      } finally {
+        process.exit(0);
+      }
+    });
 
-    process.once(CONSTANTS.signals.terminate, () =>
-      this.bot.stop(CONSTANTS.signals.terminate),
-    );
+    process.once(CONSTANTS.signals.terminate, () => {
+      try {
+        this.bot.stop(CONSTANTS.signals.terminate);
+      } finally {
+        process.exit(0);
+      }
+    });
   }
 
   private setBot(): Telegraf<BotContext> {
