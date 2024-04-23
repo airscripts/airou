@@ -5,7 +5,7 @@ import { strictEqual, notStrictEqual, deepStrictEqual } from 'node:assert';
 
 import seeding from '../env/seeding.env.js';
 import CONSTANTS from '../constants/index.js';
-import repositories from '../../sources/infrastructure/adapters/database/repositories/index.js';
+import repositories from '../../sources/infrastructure/database/repositories/index.js';
 
 const database = new PrismaClient();
 

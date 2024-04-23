@@ -1,4 +1,6 @@
 export const users = {
+  service: 'user',
+
   mocks: {
     methods: {
       find: 'find',

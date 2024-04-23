@@ -3,67 +3,70 @@ import { deepStrictEqual, notStrictEqual, strictEqual } from 'node:assert';
 
 import mocks from '../env/mocks.env.js';
 import CONSTANTS from '../constants/index.js';
-import services from '../../sources/application/services/index.js';
-import { UserServicePort } from '../../sources/domain/ports/index.js';
+import services from '../../sources/domain/services/index.js';
+import { UserServiceInterface } from '../../sources/domain/interfaces/user.service.interface.js';
 
 describe(CONSTANTS.test.unit.describe.user.service, () => {
   const users = mocks.users;
-  const service = services.locator.getService('user');
+
+  const service: UserServiceInterface = services.locator.getService(
+    CONSTANTS.user.service,
+  ) as UserServiceInterface;
 
   before(() => {
-    type MockUserServicePort = keyof UserServicePort;
+    type MockUserServiceInterface = keyof UserServiceInterface;
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.find as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.find as MockUserServiceInterface,
       () => users,
     );
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.create as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.create as MockUserServiceInterface,
       () => users[1],
     );
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.removeById as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.removeById as MockUserServiceInterface,
       () => users[1],
     );
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.disable as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.disable as MockUserServiceInterface,
       () => users[1],
     );
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.enable as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.enable as MockUserServiceInterface,
       () => users[0],
     );
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.remove as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.remove as MockUserServiceInterface,
       () => users[1],
     );
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.findByEmail as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.findByEmail as MockUserServiceInterface,
       () => users[0],
     );
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.findById as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.findById as MockUserServiceInterface,
       () => users[0],
     );
 
     mock.method(
       service,
-      CONSTANTS.user.mocks.methods.update as MockUserServicePort,
+      CONSTANTS.user.mocks.methods.update as MockUserServiceInterface,
       () => users[0],
     );
   });
