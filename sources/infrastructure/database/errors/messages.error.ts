@@ -1,8 +1,8 @@
 import CONSTANTS from '../core/constants.core.js';
 import translations from '../translations/index.js';
-import MessageModel from '../interfaces/message.interface.js';
+import MessageMapInterface from '../interfaces/message.interface.js';
 
-const repository: MessageModel = {
+const repository: MessageMapInterface = {
   DATABASE_ERROR: {
     code: CONSTANTS.error.repository.code.databaseError,
     message: translations.en.error.repository.message.databaseError,

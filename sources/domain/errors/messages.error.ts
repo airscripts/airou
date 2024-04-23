@@ -1,8 +1,8 @@
 import CONSTANTS from '../core/constants.core.js';
 import translations from '../translations/index.js';
-import MessageModel from '../models/message.model.js';
+import MessageMapInterface from '../interfaces/message.interface.js';
 
-const service: MessageModel = {
+const service: MessageMapInterface = {
   SERVICE_ERROR: {
     code: CONSTANTS.error.service.code.serviceError,
     message: translations.en.error.service.message.serviceError,

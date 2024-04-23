@@ -3,11 +3,10 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import CONSTANTS from '../core/constants.core.js';
 import services from '../../../domain/services/index.js';
 import { instance as http } from '../core/loader.core.js';
+import { UsersHttpGet, UsersHttpPost } from '../dtos/users.dto.js';
 import DOMAIN_CONSTANTS from '../../../domain/core/constants.core.js';
 import { UserFindFactory } from '../../../domain/factories/user.find.factory.js';
 import UserServiceInterface from '../../../domain/interfaces/user.service.interface.js';
-
-import { UsersHttpGet, UsersHttpPost } from '../dtos/users.dto.js';
 
 class UsersRoute {
   private service: UserServiceInterface = services.locator.getService(

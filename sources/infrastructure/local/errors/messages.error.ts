@@ -1,8 +1,8 @@
 import CONSTANTS from '../core/constants.core.js';
 import translations from '../translations/index.js';
-import MessageModel from '../interfaces/message.interface.js';
+import MessageMapInterface from '../interfaces/message.interface.js';
 
-const controller: MessageModel = {
+const controller: MessageMapInterface = {
   CONTROLLER_ERROR: {
     code: CONSTANTS.error.controller.code.controllerError,
     message: translations.en.error.controller.message.controllerError,

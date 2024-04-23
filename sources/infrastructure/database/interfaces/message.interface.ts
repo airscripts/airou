@@ -1,12 +1,12 @@
-interface Message {
+interface MessageInterface {
     code: string;
     message: string;
   }
   
-  interface MessageModel {
-    [key: string]: Message;
+  interface MessageMapInterface {
+    [key: string]: MessageInterface;
   }
   
-  export { Message, MessageModel };
-  export default MessageModel;
+  export { MessageInterface, MessageMapInterface };
+  export default MessageMapInterface;
   

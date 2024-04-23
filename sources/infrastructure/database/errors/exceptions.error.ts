@@ -1,7 +1,7 @@
-import { Message } from '../interfaces/message.interface.js';
+import { MessageInterface } from '../interfaces/message.interface.js';
 
 class RepositoryError extends Error {
-  constructor(public error: Message) {
+  constructor(public error: MessageInterface) {
     super(error.message);
     Object.setPrototypeOf(this, new.target.prototype);
     Error.captureStackTrace(this, this.constructor);
