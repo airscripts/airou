@@ -1,8 +1,8 @@
 import { fastify, FastifyInstance } from 'fastify';
 
-import routes from '../routes/index.js';
 import configs from './configs.core.js';
-import CONSTANTS from '../core/constants.core.js';
+import CONSTANTS from './constants.core.js';
+import routes from '../http/routes/index.js';
 
 export class Http {
   private port?: number;
@@ -12,9 +12,9 @@ export class Http {
 
   public constructor() {
     this.instance = fastify();
-    this.port = configs.port;
-    this.host = configs.host;
-    this.message = CONSTANTS.server.message;
+    this.port = configs.http.port;
+    this.host = configs.http.host;
+    this.message = CONSTANTS.http.message;
   }
 
   public get(): FastifyInstance {
@@ -23,11 +23,7 @@ export class Http {
 
   public routes(): void {
     routes.ping.get();
-    routes.users.get();
-    routes.users.post();
-    routes.user.get();
-    routes.user.patch();
-    routes.user.delete();
+    routes.telegram.post();
   }
 
   public start(): void {

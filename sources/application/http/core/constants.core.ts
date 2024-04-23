@@ -9,6 +9,5 @@ export default {
     ping: '/ping',
     users: '/users',
     user: '/users/:id',
-    telegram: '/telegram',
   },
 };

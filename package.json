@@ -10,8 +10,9 @@
     "tests:all": "npm run tests:unit && npm run tests:integration",
     "tests:unit": "node --import tsx --test ./tests/unit/*.test.ts",
     "application:compile.watch": "npm run application:clean && tsc -w",
-    "application:run": "node --no-warnings --watch ./distribution/sources/app.js",
     "tests:integration": "node --import tsx --test ./tests/integration/*.test.ts",
+    "application:run.bot": "node --no-warnings --watch ./distribution/sources/application/bot/app.js",
+    "application:run.api": "node --no-warnings --watch ./distribution/sources/application/http/app.js",
     "application:apply.migrations": "prisma migrate dev --schema ./sources/infrastructure/database/schema.prisma"
   },
   "repository": {

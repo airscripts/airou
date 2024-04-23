@@ -10,15 +10,14 @@ interface BotContext<U extends Update = Update> extends Context<U> {
 }
 
 export class Bot {
+  private webhook;
   private token: string;
   private bot: Telegraf<BotContext>;
 
   public constructor() {
     this.token = configs.token;
-
-    this.bot = new Telegraf<BotContext>(this.token, {
-      telegram: { webhookReply: false },
-    });
+    this.bot = this.setBot();
+    this.webhook = this.setWebhook();
 
     process.once(CONSTANTS.signals.interrupt, () =>
       this.bot.stop(CONSTANTS.signals.interrupt),
@@ -29,15 +28,25 @@ export class Bot {
     );
   }
 
-  public async webhook() {
-    return await this.bot.createWebhook({
+  private setBot(): Telegraf<BotContext> {
+    return new Telegraf<BotContext>(this.token, {
+      telegram: { webhookReply: false },
+    });
+  }
+
+  public setWebhook() {
+    return this.bot.createWebhook({
       path: configs.webhook.path,
       domain: configs.webhook.domain,
     });
   }
 
-  public get(): Telegraf<BotContext> {
+  public getBot(): Telegraf<BotContext> {
     return this.bot;
+  }
+
+  public async getWebhook() {
+    return await this.webhook;
   }
 
   public commands(): void {
@@ -50,9 +59,11 @@ export class Bot {
 }
 
 export const object: Bot = new Bot();
-export const instance: Telegraf<BotContext> = object.get();
+export const instance: Telegraf<BotContext> = object.getBot();
+export const webhook = await object.getWebhook();
 
 export default {
   object: object,
+  webhook: webhook,
   instance: instance,
 };
