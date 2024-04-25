@@ -13,7 +13,7 @@
     "tests:integration": "node --import tsx --test ./tests/integration/*.test.ts",
     "application:run.bot": "node --no-warnings --watch ./distribution/sources/application/bot/app.js",
     "application:run.api": "node --no-warnings --watch ./distribution/sources/application/http/app.js",
-    "application:apply.migrations": "prisma migrate dev --schema ./sources/infrastructure/database/schema.prisma"
+    "application:apply.migrations": "prisma migrate dev --schema ./sources/infrastructure/database/system/schemas/schema.prisma"
   },
   "repository": {
     "type": "git",
