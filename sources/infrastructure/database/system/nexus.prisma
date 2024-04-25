@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id String @id @default(uuid())
-  name String
+  name String?
   telegram Telegram?
   deletedAt DateTime?
   disabledAt DateTime?
@@ -23,7 +23,7 @@ model User {
 model Telegram {
   id String @id @default(uuid())
   isBot Boolean?
-  username String
+  username String?
   telegramId String
   isPremium Boolean?
   languageCode String?

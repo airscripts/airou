@@ -7,13 +7,14 @@
   "scripts": {
     "application:clean": "rm -rf ./distribution",
     "application:compile": "npm run application:clean && tsc",
+    "application:compile.watch": "npm run application:clean && tsc -w",
     "tests:all": "npm run tests:unit && npm run tests:integration",
     "tests:unit": "node --import tsx --test ./tests/unit/*.test.ts",
-    "application:compile.watch": "npm run application:clean && tsc -w",
     "tests:integration": "node --import tsx --test ./tests/integration/*.test.ts",
     "application:run.bot": "node --no-warnings --watch ./distribution/sources/application/bot/app.js",
     "application:run.api": "node --no-warnings --watch ./distribution/sources/application/http/app.js",
-    "application:apply.migrations": "prisma migrate dev --schema ./sources/infrastructure/database/system/schemas/schema.prisma"
+    "application:create.migration": "prisma migrate dev --schema ./sources/infrastructure/database/system/nexus.prisma",
+    "application:apply.migrations": "prisma migrate deploy --schema ./sources/infrastructure/database/system/nexus.prisma"
   },
   "repository": {
     "type": "git",
