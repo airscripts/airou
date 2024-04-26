@@ -10,7 +10,6 @@ import {
 
 class DatabaseError implements DatabaseErrorInterface {
   constructor(public error: unknown) {
-    console.error(error);
     this.generate(error);
   }
 

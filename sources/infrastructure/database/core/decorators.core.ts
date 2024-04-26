@@ -1,3 +1,4 @@
+import { instance as log } from './logger.core.js';
 import errors from '../errors/exceptions.error.js';
 
 function RepositoryDecorator(
@@ -11,6 +12,7 @@ function RepositoryDecorator(
     try {
       return await method.apply(this, args);
     } catch (error) {
+      log.error(error);
       throw new errors.DatabaseError(error);
     }
   };

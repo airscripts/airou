@@ -1,4 +1,8 @@
 export default {
+  log: {
+    destination: ['./.logs/domain/nexus.log'],
+  },
+
   service: {
     user: 'user',
     ping: 'ping',

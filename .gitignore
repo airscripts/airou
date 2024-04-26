@@ -1,4 +1,5 @@
 .env
+.logs
 .local
 distribution
 node_modules

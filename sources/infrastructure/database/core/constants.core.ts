@@ -1,4 +1,8 @@
 export default {
+  log: {
+    destination: ['./.logs/infrastructure/database.log'],
+  },
+
   repository: {
     user: 'user',
   },

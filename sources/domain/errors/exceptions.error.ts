@@ -4,7 +4,6 @@ import { RepositoryError } from '../../infrastructure/database/errors/exceptions
 
 class DomainError {
   constructor(public error: unknown) {
-    console.error(error);
     this.generate(error);
   }
 

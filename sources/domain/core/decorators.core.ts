@@ -1,4 +1,5 @@
 import errors from '../errors/exceptions.error.js';
+import { instance as log } from '../core/logger.core.js';
 
 function ServiceDecorator(
   target: any,
@@ -11,6 +12,7 @@ function ServiceDecorator(
     try {
       return await method.apply(this, args);
     } catch (error) {
+      log.error(error);
       throw new errors.DomainError(error);
     }
   };
