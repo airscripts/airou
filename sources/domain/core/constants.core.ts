@@ -21,11 +21,20 @@ export default {
   },
 
   error: {
+    system: {
+      repository: {
+        code: {
+          uniqueConstraintFailed: 'R0001',
+        },
+      },
+    },
+
     service: {
       code: {
         serviceError: 'S0000',
         missingUserName: 'S0001',
         serviceNotFound: 'S0002',
+        uniqueConstraintFailed: 'S0003',
       },
     },
   },

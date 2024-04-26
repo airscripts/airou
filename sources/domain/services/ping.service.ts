@@ -1,5 +1,4 @@
-import messages from '../errors/messages.error.js';
-import errors from '../errors/exceptions.error.js';
+import { ServiceDecorator } from '../core/decorators.core.js';
 import controllers from '../../infrastructure/engine/controllers/index.js';
 import PingServiceInterface from '../interfaces/ping.service.interface.js';
 import INFRASTRUCTURE_CONSTANTS from '../../infrastructure/engine/core/constants.core.js'
@@ -16,13 +15,9 @@ export class PingService implements PingServiceInterface {
     this.controller = controller;
   }
 
+  @ServiceDecorator
   public send(): string {
-    try {
-      return this.controller.send();
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    return this.controller.send();
   }
 }
 

@@ -17,6 +17,11 @@ const service: MessageMapInterface = {
     code: CONSTANTS.error.service.code.missingUserName,
     message: translations.en.error.service.message.missingUserName,
   },
+
+  UNIQUE_CONSTRAINT_FAILED: {
+    code: CONSTANTS.error.service.code.uniqueConstraintFailed,
+    message: translations.en.error.service.message.uniqueConstraintFailed,
+  },
 };
 
 export default {

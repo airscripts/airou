@@ -27,7 +27,6 @@ class UserRoute {
           const data = await this.service.findById(id);
           return reply.code(200).send({ data: data });
         } catch (error) {
-          console.error(error);
           return reply.code(500).send({ error: error });
         }
       },
@@ -40,13 +39,16 @@ class UserRoute {
       async (request: FastifyRequest<UserHttpPatch>, reply: FastifyReply) => {
         try {
           const { id } = request.params;
-          const { name } = request.body;
           const { action } = request.query;
+          const { name, email, username } = request.body;
           const factory = new UserActionFactory(this.service);
-          const data = await factory.action(action).execute(id, name);
+
+          const data = await factory
+            .action(action)
+            .execute(id, name, email, username);
+
           return reply.code(200).send({ data: data });
         } catch (error) {
-          console.error(error);
           return reply.code(500).send({ error: error });
         }
       },
@@ -62,7 +64,6 @@ class UserRoute {
           const data = await this.service.remove(id);
           return reply.code(200).send({ data: data });
         } catch (error) {
-          console.error(error);
           return reply.code(500).send({ error: error });
         }
       },

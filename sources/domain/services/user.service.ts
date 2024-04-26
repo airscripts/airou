@@ -1,5 +1,4 @@
-import messages from '../errors/messages.error.js';
-import errors from '../errors/exceptions.error.js';
+import { ServiceDecorator } from '../core/decorators.core.js';
 import { UserModel } from '../../domain/models/user.model.js';
 import controllers from '../../infrastructure/engine/controllers/index.js';
 import repositories from '../../infrastructure/database/repositories/index.js';
@@ -36,102 +35,82 @@ export class UserService implements UserServiceInterface {
     this.controller = controller;
   }
 
+  @ServiceDecorator
   public async find(): Promise<UserModel[]> {
-    try {
-      return await this.repository.find();
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    return await this.repository.find();
   }
 
+  @ServiceDecorator
   public async create(
     payload: UserServiceCreatePayloadType,
   ): Promise<UserModel> {
-    try {
-      let data = { name: payload.name, email: payload.email };
+    let data = {
+      name: payload.name,
+      email: payload.email,
+      username: payload.username,
+    };
 
-      if (!data.name)
-        data.name = this.controller.generate(
-          INFRASTRUCTURE_ENGINE_CONSTANTS.controller.user.generate.name,
-        );
+    if (!data.name)
+      data.name = this.controller.generate(
+        INFRASTRUCTURE_ENGINE_CONSTANTS.controller.user.generate.name,
+      );
 
-      return await this.repository.create(data);
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    if (!data.username)
+      data.username = this.controller.generate(
+        INFRASTRUCTURE_ENGINE_CONSTANTS.controller.user.generate.username,
+      );
+
+    return await this.repository.create(data);
   }
 
+  @ServiceDecorator
   public async update(
     payload: UserServiceUpdatePayloadType,
   ): Promise<UserModel> {
-    try {
-      return await this.repository.update(payload);
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    const data = {
+      id: payload.id,
+      name: payload.name,
+      email: payload.email,
+      username: payload.username,
+    };
+
+    return await this.repository.update(data);
   }
 
+  @ServiceDecorator
   public async remove(id: UserServiceRemovePayloadType): Promise<UserModel> {
-    try {
-      return await this.repository.remove(id);
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    return await this.repository.remove(id);
   }
 
+  @ServiceDecorator
   public async findById(
     id: UserServiceRetrieveByIdPayloadType,
   ): Promise<UserModel | null> {
-    try {
-      return await this.repository.findById(id);
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    return await this.repository.findById(id);
   }
 
+  @ServiceDecorator
   public async findByEmail(
     email: UserServiceRetrieveByEmailPayloadType,
   ): Promise<UserModel | null> {
-    try {
-      return await this.repository.findByEmail(email);
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    return await this.repository.findByEmail(email);
   }
 
+  @ServiceDecorator
   public async disable(id: UserServiceDisablePayloadType): Promise<UserModel> {
-    try {
-      return await this.repository.disable(id);
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    return await this.repository.disable(id);
   }
 
+  @ServiceDecorator
   public async enable(id: UserServiceEnablePayloadType): Promise<UserModel> {
-    try {
-      return await this.repository.enable(id);
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    return await this.repository.enable(id);
   }
 
+  @ServiceDecorator
   public async removeById(
     id: UserServiceDeleteByIdPayloadType,
   ): Promise<UserModel> {
-    try {
-      return await this.repository.removeById(id);
-    } catch (error) {
-      console.error(error);
-      throw new errors.ServiceError(messages.service.SERVICE_ERROR);
-    }
+    return await this.repository.removeById(id);
   }
 }
 

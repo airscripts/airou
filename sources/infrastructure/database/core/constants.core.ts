@@ -4,16 +4,22 @@ export default {
   },
 
   error: {
-    repository: {
+    database: {
       code: {
-        userNotFound: 'R0001',
-        databaseError: 'R0000',
-        userIsDeleted: 'R0004',
-        userIsDisabled: 'R0003',
-        userIsNotDeleted: 'R0006',
-        userAlreadyExists: 'R0002',
-        userisNotDisabled: 'R0005',
-        repositoryNotFound: 'R0007',
+        databaseError: 'D0000',
+      },
+    },
+
+    repository: {
+      system: {
+        code: {
+          uniqueConstraintFailed: 'P2002',
+        },
+      },
+
+      code: {
+        repositoryError: 'R0000',
+        uniqueConstraintFailed: 'R0001',
       },
     },
   },

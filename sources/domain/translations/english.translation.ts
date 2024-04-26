@@ -5,6 +5,7 @@ export default {
         serviceError: 'Service error.',
         serviceNotFound: 'Service not found.',
         missingUserName: 'Missing user name.',
+        uniqueConstraintFailed: 'Unique constraint failed.',
       },
     },
   },

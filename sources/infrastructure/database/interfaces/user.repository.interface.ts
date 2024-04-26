@@ -3,6 +3,7 @@ import {
   UserModelId,
   UserModelName,
   UserModelEmail,
+  UserModelUsername,
 } from '../../../domain/models/user.model.js';
 
 type UserRepositoryRemovePayloadType = UserModel[UserModelId];
@@ -19,11 +20,14 @@ type UserRepositoryRetrieveByEmailPayloadType = Exclude<
 interface UserRepositoryCreatePayloadType {
   name?: UserModel[UserModelName];
   email?: UserModel[UserModelEmail];
+  username?: UserModel[UserModelUsername];
 }
 
 interface UserRepositoryUpdatePayloadType {
   id: UserModel[UserModelId];
   name?: UserModel[UserModelName];
+  email?: UserModel[UserModelEmail];
+  username?: UserModel[UserModelUsername];
 }
 
 interface UserRepositoryInterface {

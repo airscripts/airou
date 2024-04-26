@@ -6,6 +6,8 @@
     "skipLibCheck": true,
     "outDir": "./distribution",
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true
   }
 }

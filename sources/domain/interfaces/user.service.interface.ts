@@ -3,6 +3,7 @@ import {
   UserModelId,
   UserModelName,
   UserModelEmail,
+  UserModelUsername,
 } from '../models/user.model.js';
 
 type UserServiceRemovePayloadType = UserModel[UserModelId];
@@ -19,11 +20,14 @@ type UserServiceRetrieveByEmailPayloadType = Exclude<
 interface UserServiceCreatePayloadType {
   name?: UserModel[UserModelName];
   email?: UserModel[UserModelEmail];
+  username?: UserModel[UserModelUsername];
 }
 
 interface UserServiceUpdatePayloadType {
   id: UserModel[UserModelId];
   name?: UserModel[UserModelName];
+  email?: UserModel[UserModelEmail];
+  username?: UserModel[UserModelUsername];
 }
 
 interface UserServiceInterface {

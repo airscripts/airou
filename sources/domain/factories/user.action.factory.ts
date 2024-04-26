@@ -57,8 +57,18 @@ class UserRemoveAction implements UserActionInterface {
 class UserPatchAction implements UserActionInterface {
   constructor(private service: UserServiceInterface) {}
 
-  async execute(id: string, name: string): Promise<UserModel> {
-    return await this.service.update({ id: id, name: name });
+  async execute(
+    id: string,
+    name?: string | null,
+    email?: string | null,
+    username?: string | null,
+  ): Promise<UserModel> {
+    return await this.service.update({
+      id: id,
+      name: name,
+      email: email,
+      username: username,
+    });
   }
 }
 

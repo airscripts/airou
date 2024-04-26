@@ -2,6 +2,8 @@ import {
   UserModel,
   UserModelId,
   UserModelName,
+  UserModelEmail,
+  UserModelUsername,
 } from '../../../domain/models/user.model.js';
 
 import {
@@ -21,6 +23,8 @@ interface UserHttpPatch {
   Body: {
     id: UserModel[UserModelId];
     name?: UserModel[UserModelName];
+    email?: UserModel[UserModelEmail];
+    username?: UserModel[UserModelUsername];
   };
 
   Querystring: {

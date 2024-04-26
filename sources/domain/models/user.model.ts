@@ -1,6 +1,7 @@
 type UserModelId = 'id';
 type UserModelName = 'name';
 type UserModelEmail = 'email';
+type UserModelUsername = 'username';
 
 interface UserModel {
   id: string;
@@ -11,10 +12,11 @@ interface UserModel {
   name: string | null;
   email: string | null;
   deletedAt: Date | null;
+  username: string | null;
   disabledAt: Date | null;
 }
 
 export { UserModel };
-export { UserModelId, UserModelName, UserModelEmail };
+export { UserModelId, UserModelName, UserModelEmail, UserModelUsername };
 
 export default UserModel;

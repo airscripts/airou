@@ -1,6 +1,5 @@
-import messages from '../errors/messages.error.js';
-import errors from '../errors/exceptions.error.js';
 import { instance as database } from '../core/loader.core.js';
+import { RepositoryDecorator } from '../core/decorators.core.js';
 import { UserModel } from '../../../domain/models/user.model.js';
 
 import {
@@ -16,109 +15,84 @@ import {
 } from '../interfaces/user.repository.interface.js';
 
 export class UserRepository implements UserRepositoryInterface {
+  @RepositoryDecorator
   public async find(): Promise<UserModel[]> {
-    try {
-      return await database.user.findMany();
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
-    }
+    return await database.user.findMany();
   }
 
+  @RepositoryDecorator
   public async create(
     user: UserRepositoryCreatePayloadType,
   ): Promise<UserModel> {
-    try {
-      const payload = { name: user.name, email: user.email };
-      return await database.user.create({ data: payload });
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
-    }
+    const payload = {
+      name: user.name,
+      email: user.email,
+      username: user.username,
+    };
+
+    return await database.user.create({ data: payload });
   }
 
+  @RepositoryDecorator
   public async update(
     user: UserRepositoryUpdatePayloadType,
   ): Promise<UserModel> {
-    try {
-      const conditions = { id: user.id };
-      const payload = { name: user.name };
-      return await database.user.update({ where: conditions, data: payload });
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.USER_NOT_FOUND);
-    }
+    const conditions = { id: user.id };
+
+    const payload = {
+      name: user.name,
+      email: user.email,
+      username: user.username,
+    };
+
+    return await database.user.update({ where: conditions, data: payload });
   }
 
+  @RepositoryDecorator
   public async remove(id: UserRepositoryRemovePayloadType): Promise<UserModel> {
-    try {
-      const conditions = { id: id };
-      return await database.user.delete({ where: conditions });
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
-    }
+    const conditions = { id: id };
+    return await database.user.delete({ where: conditions });
   }
 
+  @RepositoryDecorator
   public async findById(
     id: UserRepositoryRetrieveByIdPayloadType,
   ): Promise<UserModel | null> {
-    try {
-      const conditions = { id: id };
-      return await database.user.findUnique({ where: conditions });
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
-    }
+    const conditions = { id: id };
+    return await database.user.findUnique({ where: conditions });
   }
 
+  @RepositoryDecorator
   public async findByEmail(
     email: UserRepositoryRetrieveByEmailPayloadType,
   ): Promise<UserModel | null> {
-    try {
-      const conditions = { email: email };
-      return await database.user.findUnique({ where: conditions });
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
-    }
+    const conditions = { email: email };
+    return await database.user.findUnique({ where: conditions });
   }
 
+  @RepositoryDecorator
   public async disable(
     id: UserRepositoryDisablePayloadType,
   ): Promise<UserModel> {
-    try {
-      const conditions = { id: id };
-      const payload = { isDisabled: true, disabledAt: new Date() };
-      return await database.user.update({ where: conditions, data: payload });
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
-    }
+    const conditions = { id: id };
+    const payload = { isDisabled: true, disabledAt: new Date() };
+    return await database.user.update({ where: conditions, data: payload });
   }
 
+  @RepositoryDecorator
   public async enable(id: UserRepositoryEnablePayloadType): Promise<UserModel> {
-    try {
-      const conditions = { id: id };
-      const payload = { isDisabled: false, disabledAt: null };
-      return await database.user.update({ where: conditions, data: payload });
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
-    }
+    const conditions = { id: id };
+    const payload = { isDisabled: false, disabledAt: null };
+    return await database.user.update({ where: conditions, data: payload });
   }
 
+  @RepositoryDecorator
   public async removeById(
     id: UserRepositoryDeleteByIdPayloadType,
   ): Promise<UserModel> {
-    try {
-      const conditions = { id: id };
-      const payload = { isDeleted: true, deletedAt: new Date() };
-      return await database.user.update({ where: conditions, data: payload });
-    } catch (error) {
-      console.error(error);
-      throw new errors.RepositoryError(messages.repository.DATABASE_ERROR);
-    }
+    const conditions = { id: id };
+    const payload = { isDeleted: true, deletedAt: new Date() };
+    return await database.user.update({ where: conditions, data: payload });
   }
 }
 

@@ -2,6 +2,7 @@ import {
   UserModel,
   UserModelName,
   UserModelEmail,
+  UserModelUsername,
 } from '../../../domain/models/user.model.js';
 
 import {
@@ -20,6 +21,7 @@ interface UsersHttpPost {
   Body: {
     name: UserModel[UserModelName];
     email?: UserModel[UserModelEmail];
+    username?: UserModel[UserModelUsername];
   };
 }
 

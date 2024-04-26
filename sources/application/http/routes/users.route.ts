@@ -23,7 +23,6 @@ class UsersRoute {
           const data = await factory.find(find).execute(email);
           return reply.code(200).send({ data: data });
         } catch (error) {
-          console.error(error);
           return reply.code(500).send({ error: error });
         }
       },
@@ -35,11 +34,16 @@ class UsersRoute {
       CONSTANTS.routes.users,
       async (request: FastifyRequest<UsersHttpPost>, reply: FastifyReply) => {
         try {
-          const { name, email } = request.body || {};
-          const data = await this.service.create({ name: name, email: email });
+          const { name, email, username } = request.body || {};
+
+          const data = await this.service.create({
+            name: name,
+            email: email,
+            username: username,
+          });
+
           return reply.code(201).send({ data: data });
         } catch (error) {
-          console.error(error);
           return reply.code(500).send({ error: error });
         }
       },
