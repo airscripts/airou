@@ -3,11 +3,11 @@ interface UserControllerInterface {
 }
 
 interface UserNameControllerInterface {
-  generate(): string;
+  generate(chaos: number): string;
 }
 
 interface UserUsernameControllerInterface {
-  generate(): string;
+  generate(chaos: number): string;
 }
 
 export {

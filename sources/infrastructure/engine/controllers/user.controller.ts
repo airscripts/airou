@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { v4 as uuid } from 'uuid';
 import CONSTANTS from '../core/constants.core.js';
 
 import {
@@ -9,12 +9,14 @@ import {
 
 class UserController implements UserControllerInterface {
   public generate(field: string): string | null {
+    const chaos = Math.floor(Math.random() * CONSTANTS.random.user.length);
+
     switch (field) {
       case CONSTANTS.controller.user.generate.name:
-        return new UserNameController().generate();
+        return new UserNameController().generate(chaos);
 
       case CONSTANTS.controller.user.generate.username:
-        return new UserUsernameController().generate();
+        return new UserUsernameController().generate(chaos);
 
       default:
         return null;
@@ -23,14 +25,14 @@ class UserController implements UserControllerInterface {
 }
 
 class UserNameController implements UserNameControllerInterface {
-  public generate(): string {
-    return faker.person.fullName();
+  public generate(chaos: number): string {
+    return CONSTANTS.random.user[chaos].name;
   }
 }
 
 class UserUsernameController implements UserUsernameControllerInterface {
-  public generate(): string {
-    return faker.internet.userName();
+  public generate(chaos: number): string {
+    return `${CONSTANTS.random.user[chaos].username}.${uuid()}`;
   }
 }
 
