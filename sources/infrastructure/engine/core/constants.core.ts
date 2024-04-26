@@ -8,7 +8,6 @@ export default {
 
       generate: {
         name: 'name',
-        email: 'email',
         username: 'username',
       },
     },

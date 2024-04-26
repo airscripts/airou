@@ -2,10 +2,6 @@ interface UserControllerInterface {
   generate(field: string): string | null;
 }
 
-interface UserEmailControllerInterface {
-  generate(): string;
-}
-
 interface UserNameControllerInterface {
   generate(): string;
 }
@@ -17,7 +13,6 @@ interface UserUsernameControllerInterface {
 export {
   UserControllerInterface,
   UserNameControllerInterface,
-  UserEmailControllerInterface,
   UserUsernameControllerInterface,
 };
 
