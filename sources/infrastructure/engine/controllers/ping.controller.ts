@@ -1,6 +1,7 @@
 import CONSTANTS from '../core/constants.core.js';
+import PingControllerInterface from '../interfaces/ping.controller.interface.js';
 
-class PingController {
+class PingController implements PingControllerInterface {
   public send(): string {
     return CONSTANTS.ping;
   }

@@ -35,7 +35,7 @@ class UsersRoute {
       CONSTANTS.routes.users,
       async (request: FastifyRequest<UsersHttpPost>, reply: FastifyReply) => {
         try {
-          const { name, email } = request.body;
+          const { name, email } = request.body || {};
           const data = await this.service.create({ name: name, email: email });
           return reply.code(201).send({ data: data });
         } catch (error) {

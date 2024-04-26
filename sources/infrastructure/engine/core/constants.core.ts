@@ -3,6 +3,15 @@ export default {
 
   controller: {
     ping: 'ping',
+    user: {
+      name: 'user',
+
+      generate: {
+        name: 'name',
+        email: 'email',
+        username: 'username',
+      },
+    },
   },
 
   error: {

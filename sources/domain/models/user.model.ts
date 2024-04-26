@@ -4,11 +4,11 @@ type UserModelEmail = 'email';
 
 interface UserModel {
   id: string;
-  name: string;
   updatedAt: Date;
   createdAt: Date;
   isDeleted: boolean;
   isDisabled: boolean;
+  name: string | null;
   email: string | null;
   deletedAt: Date | null;
   disabledAt: Date | null;

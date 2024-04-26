@@ -13,7 +13,7 @@ type UserActionType =
   | UserActionDisableType;
 
 interface UserActionInterface {
-  execute(id: string, name?: string): Promise<UserModel>;
+  execute(id: string, name?: string | null): Promise<UserModel>;
 }
 
 export {

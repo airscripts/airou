@@ -1,9 +1,12 @@
 import messages from '../errors/messages.error.js';
 import errors from '../errors/exceptions.error.js';
 import { UserModel } from '../../domain/models/user.model.js';
+import controllers from '../../infrastructure/engine/controllers/index.js';
 import repositories from '../../infrastructure/database/repositories/index.js';
 import { UserServiceInterface } from '../interfaces/user.service.interface.js';
-import INFRASTRUCTURE_CONSTANTS from '../../infrastructure/database/core/constants.core.js';
+import INFRASTRUCTURE_ENGINE_CONSTANTS from '../../infrastructure/engine/core/constants.core.js';
+import INFRASTRUCTURE_DATABASE_CONSTANTS from '../../infrastructure/database/core/constants.core.js';
+import UserControllerInterface from '../../infrastructure/engine/interfaces/user.controller.interface.js';
 import { UserRepositoryInterface } from '../../infrastructure/database/interfaces/user.repository.interface.js';
 
 import {
@@ -19,13 +22,18 @@ import {
 
 export class UserService implements UserServiceInterface {
   private repository: UserRepositoryInterface;
+  private controller: UserControllerInterface;
 
   constructor(
     repository: UserRepositoryInterface = repositories.locator.getRepository(
-      INFRASTRUCTURE_CONSTANTS.repository.user,
+      INFRASTRUCTURE_DATABASE_CONSTANTS.repository.user,
     ),
+    controller: UserControllerInterface = controllers.locator.getController(
+      INFRASTRUCTURE_ENGINE_CONSTANTS.controller.user.name,
+    ) as UserControllerInterface,
   ) {
     this.repository = repository;
+    this.controller = controller;
   }
 
   public async find(): Promise<UserModel[]> {
@@ -41,10 +49,14 @@ export class UserService implements UserServiceInterface {
     payload: UserServiceCreatePayloadType,
   ): Promise<UserModel> {
     try {
-      if (!payload.name)
-        throw new errors.ServiceError(messages.service.MISSING_NAME);
+      let data = { name: payload.name, email: payload.email };
 
-      return await this.repository.create(payload);
+      if (!data.name)
+        data.name = this.controller.generate(
+          INFRASTRUCTURE_ENGINE_CONSTANTS.controller.user.generate.name,
+        );
+
+      return await this.repository.create(data);
     } catch (error) {
       console.error(error);
       throw new errors.ServiceError(messages.service.SERVICE_ERROR);

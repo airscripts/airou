@@ -43,6 +43,7 @@ export const tests = {
         findById: 'should find user by id',
         removeById: 'should remove user by id',
         findByEmail: 'should find user by email',
+        createWithGeneratedName: 'should create user with generated name',
       },
     },
   },

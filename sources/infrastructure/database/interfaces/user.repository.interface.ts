@@ -17,7 +17,7 @@ type UserRepositoryRetrieveByEmailPayloadType = Exclude<
 >;
 
 interface UserRepositoryCreatePayloadType {
-  name: UserModel[UserModelName];
+  name?: UserModel[UserModelName];
   email?: UserModel[UserModelEmail];
 }
 

@@ -17,7 +17,7 @@ type UserServiceRetrieveByEmailPayloadType = Exclude<
 >;
 
 interface UserServiceCreatePayloadType {
-  name: UserModel[UserModelName];
+  name?: UserModel[UserModelName];
   email?: UserModel[UserModelEmail];
 }
 

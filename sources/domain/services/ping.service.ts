@@ -1,9 +1,9 @@
 import messages from '../errors/messages.error.js';
 import errors from '../errors/exceptions.error.js';
-import controllers from '../../infrastructure/local/controllers/index.js';
+import controllers from '../../infrastructure/engine/controllers/index.js';
 import PingServiceInterface from '../interfaces/ping.service.interface.js';
-import INFRASTRUCTURE_CONSTANTS from '../../infrastructure/local/core/constants.core.js'
-import PingControllerInterface from '../../infrastructure/local/interfaces/ping.controller.interface.js';
+import INFRASTRUCTURE_CONSTANTS from '../../infrastructure/engine/core/constants.core.js'
+import PingControllerInterface from '../../infrastructure/engine/interfaces/ping.controller.interface.js';
 
 export class PingService implements PingServiceInterface {
   private controller: PingControllerInterface;
@@ -11,7 +11,7 @@ export class PingService implements PingServiceInterface {
   constructor(
     controller: PingControllerInterface = controllers.locator.getController(
       INFRASTRUCTURE_CONSTANTS.controller.ping,
-    ),
+    ) as PingControllerInterface,
   ) {
     this.controller = controller;
   }
