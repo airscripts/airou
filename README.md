@@ -1,27 +1,19 @@
-# Airou
-A personal assistant for everyday things.
+# Hex
+An hexagonal proof of concept.
 
 ## Contents
 - [Installation](#installation)
-- [Usage](#usage)
-- [Resources](#resources)
 - [Contributing](#contributing)
 - [Support](#support)
 - [License](#license)
 
 ## Installation
-Follow the steps below to make use of Airou.
+Follow the steps below to make use of Hex.
 
 Clone this repository:
 ```bash
-git clone https://github.com/airscripts/airou.git
+git clone https://github.com/airscripts/hex.git
 ```
-
-## Usage
-404
-
-## Resources
-404
 
 ## Contributing
 Contributions and suggestions about how to improve this project are welcome!
@@ -39,4 +31,4 @@ Choose what you find more suitable for you:
 </a>
 
 ## License  
-This repository is licensed under [MIT License](https://github.com/airscripts/airou/blob/main/LICENSE).
+This repository is licensed under [MIT License](https://github.com/airscripts/hex/blob/main/LICENSE).
