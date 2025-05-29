@@ -1,5 +1,5 @@
 {
-  "name": "airou",
+  "name": "hex",
   "type": "module",
   "version": "0.1.0",
   "main": "./distribution/sources/app.js",
@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airscripts/airou.git"
+    "url": "git+https://github.com/airscripts/hex.git"
   },
   "author": "airscripts",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/airscripts/airou/issues"
+    "url": "https://github.com/airscripts/hex/issues"
   },
-  "homepage": "https://github.com/airscripts/airou#readme",
+  "homepage": "https://github.com/airscripts/hex#readme",
   "dependencies": {
     "@prisma/client": "^5.13.0",
     "fastify": "^4.26.2",

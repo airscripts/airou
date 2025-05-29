@@ -17,7 +17,7 @@ git clone https://github.com/airscripts/hex.git
 
 ## Contributing
 Contributions and suggestions about how to improve this project are welcome!
-Please follow [our contribution guidelines](https://github.com/airscripts/airou/blob/main/CONTRIBUTING.md).
+Please follow [our contribution guidelines](https://github.com/airscripts/hex/blob/main/CONTRIBUTING.md).
 
 ## Support
 If you want to support my work you can do it by following me, leaving a star, sharing my projects or also donating at the links below.  
